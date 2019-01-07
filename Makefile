@@ -6,17 +6,17 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:31:30 by conoel            #+#    #+#              #
-#    Updated: 2019/01/07 16:42:34 by conoel           ###   ########.fr        #
+#    Updated: 2019/01/07 17:00:30 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-HEADER = ./includes/ft_printf.h
+HEADER = ./include/swap_push.h
 
-SRC_NAME = \
+SRC_NAME = reverse.c swap.c  rotate.c push.c push_swap.c checker.c\
 
-SRC = $(addprefix ./srcs/, $(SRC_NAME))
+SRC = $(addprefix ./src/, $(SRC_NAME))
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
