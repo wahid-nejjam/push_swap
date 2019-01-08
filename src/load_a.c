@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:12:55 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 17:31:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/08 18:31:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,25 @@
 
 t_elem			*load_a(int argc, char **argv)
 {
-	int		i;
-	t_elem	*first_a;
-	t_elem	*last_a;
+	size_t		i;
+	t_elem	*root_a;
 	t_elem	*tmp;
 
 	i = 1;
 	if (argc < 2)
 		return (NULL);
-		last_a = new(0, NULL, NULL, 1);
-		last_a = new(ft_atoi(argv[i]), NULL, NULL, 0);
-	if (!(last_a = malloc(sizeof(*last_a))))
+	if (!(root_a = new(0, NULL, NULL, 1)))
 		return (NULL);
-	last_a->nb = ft_atoi(argv[i]);
-	last_a->next = NULL;
-	last_a->previous = NULL;
-	first_a = last_a;
-	while (++i < argc)
+	if (!(root_a->next = new(ft_atoi(argv[i]), root_a, root_a, 0)))
+		return (NULL);
+	root_a->previous = root_a->next;
+	tmp = root_a->next;
+	while (++i < (size_t)argc)
 	{
-		if (!(tmp = malloc(sizeof(*tmp))))
+		if (!(tmp = new(ft_atoi(argv[i]), root_a, tmp, 0)))
 			return (NULL);
-		tmp->nb = ft_atoi(argv[i]);
-		tmp->previous = last_a;
-		tmp->next = NULL;
-		last_a->next = tmp;
-		last_a = tmp;
+		tmp->previous->next = tmp;
 	}
-	last_a->next = first_a;
-	first_a->previous = last_a;
-	return (last_a);
+	root_a->previous = tmp;
+	return (root_a);
 }

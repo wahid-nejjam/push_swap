@@ -6,23 +6,22 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 13:11:07 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/08 18:50:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void		print_stack(t_elem *last)
+void		print_stack(t_elem *root)
 {
-	t_elem	*mem;
+	t_elem	*tmp;
 
-	mem = last->next;
+	tmp = root->previous;
 	write(1, "Liste_a\n", 9);
-	while (mem != last)
+	while (!tmp->root)
 	{
-		printf("|%d|\n", last->nb);
-		last = last->previous;
+		printf("|%d|\n", tmp->nb);
+		tmp = tmp->previous;
 	}
-	printf("|%d|\n", last->nb);
 	write(1, "\n", 1);
 }
