@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:42:31 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 12:50:40 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/09 10:43:37 by conoel            #+#    #+#             */
+/*   Updated: 2019/01/07 20:34:13 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void		rotate(t_elem **last)
+int	ft_strcmp(char *s1, char *s2)
 {
-	*last = (*last)->next;
-}
-
-void		double_rotate(t_elem **last_a, t_elem **last_b)
-{
-	*last_a = (*last_a)->next;
-	*last_b = (*last_b)->next;
+	while (*s1 == *s2 && *s1 && *s2)
+		s1++ && s2++;
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

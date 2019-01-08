@@ -5,49 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/12/13 11:31:30 by conoel            #+#    #+#              #
-#    Updated: 2019/01/07 17:00:30 by conoel           ###   ########.fr        #
+#    Created: 2019/01/08 12:48:47 by conoel            #+#    #+#              #
+#    Updated: 2019/01/08 12:48:53 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+SRC = swap.c load_a.c checker.c ft_atoi.c ft_strcmp.c rotate.c
+SRCD = src/
+HDR = push_swap.h
+HDRD = include/
+OBJ = $(SRC:.c=.o)
+SRCF = ${addprefix $(SRCD), $(SRC)}
+HDRF = ${addprefix $(HDRD), $(HDR)}
 
-HEADER = ./include/swap_push.h
+all: checker clean
 
-SRC_NAME = reverse.c swap.c  rotate.c push.c push_swap.c checker.c\
-
-SRC = $(addprefix ./src/, $(SRC_NAME))
-
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-OBJ = $(addprefix ./obj/, $(OBJ_NAME))
-
-.PHONY: clean fclean all re heil
-
-all: obj $(NAME)
-
-obj:
-		@mkdir -p obj
-
-$(NAME): $(OBJ)
-		@ar rc $(NAME) $(OBJ)
-		@ranlib $(NAME)
-		@echo "Created Lib file ($(NAME)) !"
-
-./obj/%.o: ./srcs/%.c
-		@gcc -Ofast -Wextra -Werror -Wall -c $< -o $@ -I$(HEADER)
-		#@gcc -c $< -o $@ -I$(HEADER)
+checker:
+	@gcc -Wall -Werror -Wextra -c $(SRCF)
+	@gcc $(OBJ) -o checker
 
 clean:
-		@rm -rf ./obj/*.o
-		@echo "Removed all .o files"
+	@rm -f $(OBJ)
 
 fclean: clean
-		@rm -rf $(NAME)
-		@echo "Removed $(NAME) file"
+	@rm -f checker
 
 re: fclean all
-
-#heil: all
-#/		@gcc main.c $(NAME) -I$(HEADER)
-#		@echo "\n#>======= -- =======<#\n#       ~ ~~ ~       #\n#\033[31m\033[1m Heil Anne Franck ! \033[00m#\n#       ~ ~~ ~       #\n#>======= -- =======<#"
