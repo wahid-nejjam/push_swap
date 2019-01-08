@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 12:48:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/08 17:16:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	is_sort(t_elem *last_a, t_elem *last_b)
 {
 	t_elem	*mem;
 
-	mem = last_a;
+	mem = last_a->next;
 	while (mem != last_a)
 	{
 		if (last_a->nb > last_a->previous->nb)
@@ -26,12 +26,13 @@ static void	is_sort(t_elem *last_a, t_elem *last_b)
 		}
 		last_a = last_a->previous;
 	}
-	if (last_b->previous != last_b || last_b->next != last_b) 
+	last_b = 0;
+	/*if (last_b->previous != last_b || last_b->next != last_b) 
 	{
 		write(1, "KO\n", 3);
 		return ;
-	}
-	write(1, "OK\n", 1);
+	}*/
+	write(1, "OK\n", 3);
 }
 
 static int	exec_ft(char *ft, t_elem **last_a, t_elem **last_b)
@@ -48,8 +49,15 @@ static int	exec_ft(char *ft, t_elem **last_a, t_elem **last_b)
 		*last_b = (*last_b)->next;
 	else if (ft_strcmp(ft, "rr\n") == 0)
 		double_rotate(last_a, last_b);
+	else if (ft_strcmp(ft, "rra\n") == 0)
+		*last_a = (*last_a)->previous;
+	else if (ft_strcmp(ft, "rrb\n") == 0)
+		*last_b = (*last_b)->previous;
+	else if (ft_strcmp(ft, "rrr\n") == 0)
+		double_r_rotate(last_a, last_b);
 	else 
 		return (-1);
+	print_stack(*last_a);
 	return (0);
 }
 
@@ -57,13 +65,13 @@ int			main(int argc, char **argv)
 {
 	t_elem	*last_a;
 	t_elem	*last_b;
-	char	line[4];
+	char	line[5];
 
-	line[3] = '\0';
+	ft_bzero(line, 5);
 	last_a = load_a(argc, argv);
 	if (!(last_b = malloc(sizeof(*last_b))))
 		return (-1);
-	last_b->nb = 0;
+	last_b->root = 1;
 	last_b->next = last_b;
 	last_b->previous = last_b;
 	if (last_a == NULL)
@@ -71,13 +79,14 @@ int			main(int argc, char **argv)
 		write(2, "THAT DOESNT WORKED NIGGA\n", 26);
 		return (-1);
 	}
-	while (read(1, line, 3))
+	while (read(1, line, 4) && line[0] != '\n')
 	{
 		if (exec_ft(line, &last_a, &last_b) == -1)
 		{
 			write(2, "Learn how to type, dumbass.\n", 28);
 			return (-1);
 		}
+		ft_bzero(line, 5);
 	}
 	is_sort(last_a, last_b);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:12:55 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/07 18:44:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/08 17:31:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_elem			*load_a(int argc, char **argv)
 	i = 1;
 	if (argc < 2)
 		return (NULL);
+		last_a = new(0, NULL, NULL, 1);
+		last_a = new(ft_atoi(argv[i]), NULL, NULL, 0);
 	if (!(last_a = malloc(sizeof(*last_a))))
 		return (NULL);
 	last_a->nb = ft_atoi(argv[i]);

@@ -6,7 +6,15 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:57:07 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/07 16:57:08 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/08 17:24:57 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/push_swap.h"
+
+void	push(t_elem **last1, t_elem **last2)
+{
+
+	last1 = NULL;
+	last2 = NULL;
+}

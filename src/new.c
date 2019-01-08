@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:42:31 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 13:13:02 by conoel           ###   ########.fr       */
+/*   Created: 2019/01/08 17:13:24 by conoel            #+#    #+#             */
+/*   Updated: 2019/01/08 17:30:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../inlude/push_swap.h"
 
-void		rotate(t_elem **last)
+t_elem	*new(int nb, t_elem *next, t_elem *previous, char root)
 {
-	*last = (*last)->next;
-}
+	t_elem	*new;
 
-void		double_rotate(t_elem **last_a, t_elem **last_b)
-{
-	*last_a = (*last_a)->next;
-	*last_b = (*last_b)->next;
-}
-
-void		r_rotate(t_elem **last)
-{
-	*last = (*last)->previous;
-}
-
-void		double_r_rotate(t_elem **last_a, t_elem **last_b)
-{
-	*last_a = (*last_a)->previous;
-	*last_b = (*last_b)->previous;
+	if (!(new = malloc(sizeof(*new))))
+		return (NULL);
+	new->nb = nb;
+	new->next = next;
+	new->previous = previous;
+	new->root = root;
 }
