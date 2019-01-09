@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 15:41:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/09 19:19:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,30 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 
 static int	exec_ft(char *ft, t_elem **root_a, t_elem **root_b)
 {
-	if (ft_strcmp(ft, "sa\n") == 0)
+	if (ft_memcmp(ft, "sa\n", 3) == 0 || ft_memcmp(ft, "sa \n", 4) == 0)
 		swap(*root_a);
-	else if (ft_strcmp(ft, "sb\n") == 0)
+	else if (ft_memcmp(ft, "sb\n", 3) == 0 || ft_memcmp(ft, "sb \n", 4) == 0)
 		swap(*root_b);
-	else if (ft_strcmp(ft, "ss\n") == 0)
+	else if (ft_memcmp(ft, "ss\n", 3) == 0 || ft_memcmp(ft, "ss \n", 4) == 0)
 		double_swap(*root_a, *root_b);
-	else if (ft_strcmp(ft, "pa\n") == 0)
+	else if (ft_memcmp(ft, "pa\n", 3) == 0 || ft_memcmp(ft, "pa \n", 4) == 0)
 		push(*root_a, *root_b);
-	else if (ft_strcmp(ft, "pb\n") == 0)
+	else if (ft_memcmp(ft, "pb\n", 3) == 0 || ft_memcmp(ft, "pb \n", 4) == 0)
 		push(*root_b, *root_a);
-	else if (ft_strcmp(ft, "ra\n") == 0)
+	else if (ft_memcmp(ft, "ra\n", 3) == 0 || ft_memcmp(ft, "ra \n", 4) == 0)
 		rotate(root_a);
-	else if (ft_strcmp(ft, "rb\n") == 0)
+	else if (ft_memcmp(ft, "rb\n", 3) == 0 || ft_memcmp(ft, "rb \n", 4) == 0)
 		rotate(root_b);
-	else if (ft_strcmp(ft, "rr\n") == 0)
+	else if (ft_memcmp(ft, "rr\n", 3) == 0 || ft_memcmp(ft, "rr \n", 4) == 0)
 		double_rotate(root_a, root_b);
-	else if (ft_strcmp(ft, "rra\n") == 0)
+	else if (ft_memcmp(ft, "rra\n", 4) == 0)
 		r_rotate(root_a);
-	else if (ft_strcmp(ft, "rrb\n") == 0)
+	else if (ft_memcmp(ft, "rrb\n", 4) == 0)
 		r_rotate(root_b);
-	else if (ft_strcmp(ft, "rrr\n") == 0)
+	else if (ft_memcmp(ft, "rrr\n", 4) == 0)
 		double_r_rotate(root_a, root_b);
 	else 
 		return (-1);
-	//print_stack(*root_a, *root_b);
 	return (1);
 }
 
@@ -69,7 +68,7 @@ static int solve(t_elem *root_a, t_elem *root_b)
 	char line[5];
 
 	ft_bzero(line, 5);
-	while (read(1, line, 4))
+	while (read(0, line, 4))
 	{
 		if (exec_ft(line, &root_a, &root_b) == -1)
 		{
@@ -89,7 +88,7 @@ int			main(int argc, char **argv)
 	root_a = load_a(argc, argv);
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
-		write(2, "Allocation error :(", 21);
+		write(2, "Allocation error :(\n", 21);
 		ft_free(root_a, root_b);
 		return (-1);
 	}

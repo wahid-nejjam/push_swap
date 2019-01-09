@@ -6,14 +6,14 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 12:48:47 by conoel            #+#    #+#              #
-#    Updated: 2019/01/09 16:19:47 by conoel           ###   ########.fr        #
+#    Updated: 2019/01/09 21:15:43 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HEADER = include/push_swap.h
 
 SRC_NAME = ft_atoi.c ft_bzero.c ft_strcmp.c print_stack.c new.c load_a.c\
-push.c swap.c rotate.c ft_free.c
+push.c swap.c rotate.c ft_free.c ft_strsplit.c ft_memcmp.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -21,13 +21,23 @@ SRC = ${addprefix ./src/, $(SRC_NAME)}
 
 OBJ = ${addprefix ./obj/, $(OBJ_NAME)}
 
-.PHONY: all checker push_swap clean fclean re
+.PHONY: all checker push_swap clean fclean re bonobo
 
 all: checker pushswap
 
+clean:
+	@rm -f $(OBJ)
+
+fclean:
+	@rm -f checker push_swap
+	@rm -Rf ./obj
+	@echo "               ~ --- ~\n*< \033[36mEverything have been removed.\033[0m >*\n               ~ --- ~"
+
+re: fclean all
+
 obj:
 	@mkdir -p obj
-	@echo "\n========= * \033[35m\033[1mCreating obj dir\033[0m * =========\n"
+	@echo "\n>========= * \033[35m\033[1mCreating obj dir\033[0m * =========<\n"
 
 ./obj/%.o: ./src/%.c
 	@clang -Ofast -Wextra -Werror -Wall -c $< -o $@
@@ -39,19 +49,20 @@ checker: obj $(OBJ)
 	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n-* |   \033[34m\033[1mChecker binary created successfully !\033[0m   | *-\n    \-------========= ~~ * ~~ =========-------/\n"
 
 pushswap: obj $(OBJ)
-	@clang -Ofast -Wextra -Werror -Wall -c src/push_swap.c -o obj/push_swap.o
-	@clang $(OBJ) obj/push_swap.o -o push_swap
+	@clang -Ofast -Wextra -Werror -Wall -c src/push_swap_selection.c -o obj/push_swap_selection.o
+	@clang $(OBJ) obj/push_swap_selection.o -o push_swap
 	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n-* |   \033[33m\033[1mPushSwap binary created successfully !\033[0m   | *-\n    \-------========= ~~ * ~~ =========-------/\n"
 
-clean:
-	@rm -f $(OBJ)
+#  |=======================================|
+#  |========= RANDOM SORT (BONUS) =========|
+#  |=======================================|
 
-fclean:
-	@rm -f checker push_swap
-	@rm -Rf ./obj
-	@echo "               ~ --- ~\n*< \033[36mEverything have been removed.\033[0m >*\n               ~ --- ~"
+bonobo: pushswap_r
 
-re: fclean all
+pushswap_r: obj $(OBJ)
+	@clang -Ofast -Wextra -Werror -Wall -c src/push_swap_random.c -o obj/push_swap_random.o
+	@clang $(OBJ) obj/push_swap_random.o -o push_swap
+	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n-* |   \033[33m\033[1mPushSwap binary created successfully !\033[0m   | *-\n    \-------========= ~~ * ~~ =========-------/\n"
 
 #  |=======================================|
 #  |========= VISUAL MODE (BONUS) =========|

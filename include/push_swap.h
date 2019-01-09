@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 14:46:45 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/09 18:25:54 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_elem		*new(int nb, t_elem *next, t_elem *previous, char root);
 //	general functions
 int			ft_atoi(char *str);
 int			ft_strcmp(char *s1, char *s2);
+int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		ft_bzero(char *s, size_t n);
+char		**ft_strsplit(char const *s, char c);
 
 #endif

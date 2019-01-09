@@ -1,51 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_random.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/07 16:57:13 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 16:17:53 by conoel           ###   ########.fr       */
+/*   Created: 2019/01/09 17:49:55 by conoel            #+#    #+#             */
+/*   Updated: 2019/01/09 19:04:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	solve(t_elem *root_a, t_elem *root_b)
-{
-	t_elem	*ptr;
-	t_elem	*save;
-	int		min;
+#include <time.h>
 
+static int	issort(t_elem *root_a)
+{
+	t_elem *ptr;
 	ptr = root_a->next;
-	while (root_a->next != root_a)
+	while (ptr->next->root != 1)
 	{
-		ptr = root_a->next;
-		min = ptr->nb;
-		while(ptr != root_a)
-		{
-			if (ptr->nb < min)
-			{
-				min = ptr->nb;
-				save = ptr;
-			}
-			ptr = ptr->next;
-		}
-		while(root_a->previous->nb != min)
-		{
-			write(1, "ra\n", 3);
-			rotate(&root_a);
-			//print_stack(root_a, root_b);
-		}
-		write(1, "pa\n", 3);
-		push(root_a, root_b);
-		//print_stack(root_a, root_b);
+		if (ptr->nb > ptr->next->nb)
+			return (0);
+		ptr = ptr->next;
 	}
-	while (root_b->next != root_b)
+	return (1);
+}
+
+static void	solve(t_elem *root_a)
+{
+	int		is_sort;
+	int		nb;
+
+	srand(time(NULL));
+	is_sort = issort(root_a);
+	while(!is_sort)
 	{
-		push(root_b, root_a);
-		//print_stack(root_a, root_b);
+		nb = rand() % 3;
+		if (nb == 0)
+		{
+			write(1, "sa \n", 4);
+			swap(root_a);
+		}
+		else if (nb == 1)
+		{
+			write(1, "ra \n", 4);
+			rotate(&root_a);
+		}
+		else if (nb == 2)
+		{
+			write(1, "rra\n", 4);			
+			r_rotate(&root_a);
+		}
+		is_sort = issort(root_a);
 	}
 }
 
@@ -68,7 +75,7 @@ int		main(int argc, char**argv)
 	if (root_a == NULL)
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
 	else
-		solve(root_a, root_b);
+		solve(root_a);
 	ft_free(root_a, root_b);
 	return (0);
 }
