@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 19:31:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/09 14:46:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void		r_rotate(t_elem **last);
 void		double_r_rotate(t_elem **last_a, t_elem **last_b);
 void		push(t_elem *last_a, t_elem *last_b);
 
-//	checker functions
+//	specific functions
 t_elem		*load_a(int argc, char **argv);
-void		print_stack(t_elem *last);
+void		print_stack(t_elem *root_a, t_elem *root_b);
+void		ft_free(t_elem *root_a, t_elem *root_b);
+t_elem		*new(int nb, t_elem *next, t_elem *previous, char root);
 
-//	utils
+//	general functions
 int			ft_atoi(char *str);
 int			ft_strcmp(char *s1, char *s2);
 void		ft_bzero(char *s, size_t n);
-t_elem		*new(int nb, t_elem *next, t_elem *previous, char root);
 
 #endif

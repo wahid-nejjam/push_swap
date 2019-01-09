@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/08 22:18:41 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/09 15:41:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,35 +60,48 @@ static int	exec_ft(char *ft, t_elem **root_a, t_elem **root_b)
 		double_r_rotate(root_a, root_b);
 	else 
 		return (-1);
-	return (0);
+	//print_stack(*root_a, *root_b);
+	return (1);
+}
+
+static int solve(t_elem *root_a, t_elem *root_b)
+{
+	char line[5];
+
+	ft_bzero(line, 5);
+	while (read(1, line, 4))
+	{
+		if (exec_ft(line, &root_a, &root_b) == -1)
+		{
+			write(2, "Learn how to type, dumbass.\n", 28);
+			return (0);
+		}
+		ft_bzero(line, 5);
+	}
+	return (1);
 }
 
 int			main(int argc, char **argv)
 {
 	t_elem	*root_a;
 	t_elem	*root_b;
-	char	line[5];
 
-	ft_bzero(line, 5);
 	root_a = load_a(argc, argv);
 	if (!(root_b = new(0, NULL, NULL, 1)))
+	{
+		write(2, "Allocation error :(", 21);
+		ft_free(root_a, root_b);
 		return (-1);
+	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
 	if (root_a == NULL)
-	{
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
-		return (-1);
-	}
-	while (read(1, line, 4) && line[0] != '\n')
+	else
 	{
-		if (exec_ft(line, &root_a, &root_b) == -1)
-		{
-			write(2, "Learn how to type, dumbass.\n", 28);
-			return (-1);
-		}
-		ft_bzero(line, 5);
+		if (solve(root_a, root_b))
+			is_sort(root_a, root_b);
 	}
-	is_sort(root_a, root_b);
+	ft_free(root_a, root_b);
 	return (0);
 }

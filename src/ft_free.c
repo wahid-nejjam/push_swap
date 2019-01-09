@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/07 16:57:07 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 13:11:37 by conoel           ###   ########.fr       */
+/*   Created: 2019/01/09 14:43:53 by conoel            #+#    #+#             */
+/*   Updated: 2019/01/09 14:47:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	push(t_elem *root1, t_elem *root2)
+void	ft_free(t_elem *root_a, t_elem *root_b)
 {
-	if (root1->next == root1)
-		return ;
-	t_elem	*last1;
-	t_elem	*last2;
-	t_elem	*moving;
+	t_elem	*tmp;
+	t_elem	*tmp1;
 
-	last1 = root1->previous->previous;
-	last2 = root2->previous;
-	moving = root1->previous;
 
-	moving->next = root2;
-	moving->previous = last2;
-	root1->previous = last1;
-	last1->next = root1;
-	root2->previous = moving;
-	last2->next = moving;
+	tmp = root_a->next;
+	tmp1 = tmp;
+	while (tmp != root_a)
+	{
+		free(tmp);
+		tmp = tmp1->next;
+		tmp1 = tmp;
+	}
+	free(root_a);
+	tmp = root_b->next;
+	tmp1 = tmp;
+	while (tmp != root_b)
+	{
+		free(tmp);
+		tmp = tmp1->next;
+		tmp1 = tmp;
+	}
+	free(root_b);
 }
