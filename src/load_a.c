@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:12:55 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 17:23:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/15 10:37:57 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_elem			*load_a(int argc, char **argv)
 {
-	size_t		i;
+	size_t	i;
 	t_elem	*root_a;
 	t_elem	*tmp;
 
-	i = argc == 2  ? 0 : 1;
+	i = argc == 2 ? 0 : 1;
 	if (argc < 2)
 		return (NULL);
 	if (argc == 2)

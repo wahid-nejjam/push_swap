@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:43:53 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 14:47:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/15 10:54:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_free(t_elem *root_a, t_elem *root_b)
 {
 	t_elem	*tmp;
 	t_elem	*tmp1;
-
 
 	tmp = root_a->next;
 	tmp1 = tmp;

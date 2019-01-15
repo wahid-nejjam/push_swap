@@ -1,60 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_random.c                                 :+:      :+:    :+:   */
+/*   push_swap_backtracking.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/09 17:49:55 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/15 10:50:53 by conoel           ###   ########.fr       */
+/*   Created: 2019/01/15 13:36:19 by conoel            #+#    #+#             */
+/*   Updated: 2019/01/15 13:49:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-#include <time.h>
 
-static int	issort(t_elem *root_a)
+
+
+static void	solve(t_elem *root_a, t_elem *root_b)
 {
-	t_elem *ptr;
+	s_ft *start;
 
-	ptr = root_a->next;
-	while (ptr->next->root != 1)
-	{
-		if (ptr->nb > ptr->next->nb)
-			return (0);
-		ptr = ptr->next;
-	}
-	return (1);
-}
+	start = solving(&root_a, &root_b);
 
-static void	solve(t_elem *root_a)
-{
-	int		is_sort;
-	int		nb;
-
-	srand(time(NULL));
-	is_sort = issort(root_a);
-	while (!is_sort)
-	{
-		nb = rand() % 3;
-		if (nb == 0)
-		{
-			write(1, "sa \n", 4);
-			swap(root_a);
-		}
-		else if (nb == 1)
-		{
-			write(1, "ra \n", 4);
-			rotate(&root_a);
-		}
-		else if (nb == 2)
-		{
-			write(1, "rra\n", 4);
-			r_rotate(&root_a);
-		}
-		is_sort = issort(root_a);
-	}
 }
 
 int			main(int argc, char **argv)

@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/09 19:19:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/01/15 12:34:23 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
+#include "../include/push_swap.h"
 
 static void	is_sort(t_elem *root_a, t_elem *root_b)
 {
@@ -22,16 +22,20 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 		if (tmp->nb > tmp->next->nb)
 		{
 			write(1, "KO\n", 3);
+			ft_free(root_a, root_b);
 			return ;
 		}
 		tmp = tmp->next;
 	}
-	if (root_b->previous != root_b || root_b->next != root_b) 
+	if (root_b->previous != root_b || root_b->next != root_b)
 	{
 		write(1, "KO (B not emptied)\n", 19);
+		ft_free(root_a, root_b);
 		return ;
 	}
 	write(1, "OK\n", 3);
+	ft_free(root_a, root_b);
+	return ;
 }
 
 static int	exec_ft(char *ft, t_elem **root_a, t_elem **root_b)
@@ -58,12 +62,12 @@ static int	exec_ft(char *ft, t_elem **root_a, t_elem **root_b)
 		r_rotate(root_b);
 	else if (ft_memcmp(ft, "rrr\n", 4) == 0)
 		double_r_rotate(root_a, root_b);
-	else 
+	else
 		return (-1);
 	return (1);
 }
 
-static int solve(t_elem *root_a, t_elem *root_b)
+static int	solve(t_elem *root_a, t_elem *root_b)
 {
 	char line[5];
 
@@ -101,6 +105,5 @@ int			main(int argc, char **argv)
 		if (solve(root_a, root_b))
 			is_sort(root_a, root_b);
 	}
-	ft_free(root_a, root_b);
 	return (0);
 }
