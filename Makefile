@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/01 19:46:04 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/01 19:47:01 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(LIBFT) $(OBJDIR) $(OBJ) $(NAME) $(NAME2)
 
 $(NAME): $(LIBFT) $(OBJDIR) $(OBJ) $(NAME_OBJ)
 	@clang -Werror -Wextra -Wall $(OBJ) ./obj/$(NAME).o -o $(NAME) libft/libft.a
-	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n       \033[34m\033[1m$(NAME) binary created successfully !\033[0m\n    \-------========= ~~ * ~~ =========-------/\n"
+	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n      \033[34m\033[1m$(NAME) binary created successfully !\033[0m\n    \-------========= ~~ * ~~ =========-------/\n"
 
 $(NAME2): $(LIBFT) $(OBJDIR) $(OBJ) $(NAME2_OBJ)
 	@clang -Werror -Wextra -Wall $(OBJ) ./obj/$(NAME2).o -o $(NAME2) libft/libft.a
