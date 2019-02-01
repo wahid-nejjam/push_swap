@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/15 13:32:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/01 05:55:00 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <strings.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "../libft/libft.h"
 
 typedef struct		s_elem
 {
@@ -51,12 +52,5 @@ int			ft_get_index(t_elem *elem);
 int			issort(t_elem *root_a);
 t_elem		*ft_get_min(t_elem *root_a);
 t_elem		*ft_get_max(t_elem *root_a);
-
-//	general functions
-int			ft_atoi(char *str);
-int			ft_strcmp(char *s1, char *s2);
-int			ft_memcmp(const void *s1, const void *s2, size_t n);
-void		ft_bzero(char *s, size_t n);
-char		**ft_strsplit(char const *s, char c);
 
 #endif
