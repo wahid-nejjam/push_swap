@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:57:13 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/15 10:47:52 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/01 22:18:48 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static void	ft_call(char *ft, t_elem *root_a, t_elem *root_b)
 {
 	if (ft_strcmp(ft, "ra") == 0)
 	{
-		write(1, "ra\n ", 4);
+		write(1, "ra\n ", 3);
 		rotate(&root_a);
 	}
 	else if (ft_strcmp(ft, "pa") == 0)
 	{
-		write(1, "pa\n ", 4);
+		write(1, "pa\n ", 3);
 		push(root_a, root_b);
 	}
 	else if (ft_strcmp(ft, "pb") == 0)
 	{
-		write(1, "pb\n ", 4);
+		write(1, "pb\n ", 3);
 		push(root_b, root_a);
 	}
 }

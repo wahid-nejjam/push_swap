@@ -21,7 +21,7 @@ t_elem			*load_a(int argc, char **argv)
 	i = argc == 2 ? 0 : 1;
 	if (argc < 2)
 		return (NULL);
-	if (argc == 2)
+	if (argc == 2 || (argc == 3 && argv[2][0] == '-'))
 		argv = ft_strsplit(argv[1], ' ');
 	if (!(root_a = new(0, NULL, NULL, 1)))
 		return (NULL);
@@ -31,8 +31,9 @@ t_elem			*load_a(int argc, char **argv)
 	tmp = root_a->next;
 	while (argc != 2 ? ++i < (size_t)argc : argv[++i] != 0)
 	{
-		if (!(tmp = new(ft_atoi(argv[i]), root_a, tmp, 0)))
-			return (NULL);
+		if (argv[i][0] != '-')
+			if (!(tmp = new(ft_atoi(argv[i]), root_a, tmp, 0)))
+				return (NULL);
 		tmp->previous->next = tmp;
 	}
 	root_a->previous = tmp;
