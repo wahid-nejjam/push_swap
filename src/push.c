@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:57:07 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/15 10:53:47 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/03 17:46:32 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push(t_elem *root1, t_elem *root2)
 	t_elem	*moving;
 
 	if (root1->next == root1)
-		return ;
+		exit(1);
 	last1 = root1->previous->previous;
 	last2 = root2->previous;
 	moving = root1->previous;

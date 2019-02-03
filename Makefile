@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/01 23:02:40 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/03 18:50:59 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME2 = checker
 
 HEADER = include/push_swap.h
 
-SRC_NAME = ft_free.c load_a.c new.c print_stack.c push.c rotate.c swap.c utils.c
+SRC_NAME = ft_free.c load_a.c new.c print_stack.c push.c rotate.c swap.c utils.c\
+exec_ft.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

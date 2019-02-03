@@ -1,82 +1,89 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 10:23:51 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/02 04:29:38 by conoel           ###   ########.fr       */
-/*                                                                            */
+/*	*/
+/*	:::	  ::::::::   */
+/*   push_swap.c	:+:	  :+:	:+:   */
+/*	+:+ +:+	 +:+	 */
+/*   By: conoel <conoel@student.42.fr>	  +#+  +:+	   +#+	*/
+/*	+#+#+#+#+#+   +#+	   */
+/*   Created: 2019/02/02 18:15:24 by conoel	#+#	#+#	 */
+/*   Updated: 2019/02/03 17:18:54 by conoel	   ###   ########.fr	   */
+/*	*/
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	ft_call(char *ft, t_elem *root_a, t_elem *root_b, int delay, t_elem *mark)
-{
-	if (ft_strcmp(ft, "ra") == 0)
-	{
-		write(1, "ra\n", 3);
-		rotate(root_a);
-	}
-	else if (ft_strcmp(ft, "rra") == 0)
-	{
-		write(1, "rra\n ", 4);
-		r_rotate(root_a);
-	}
-	else if (ft_strcmp(ft, "pa") == 0)
-	{
-		write(1, "pa\n", 3);
-		push(root_a, root_b);
-	}
-	else if (ft_strcmp(ft, "pb") == 0)
-	{
-		write(1, "pb\n", 3);
-		push(root_b, root_a);
-	}
-	if (delay != -1)
-	{
-		print_stack(root_a, root_b, ft, mark);
-		usleep(delay);
-	}
-}
 
-static void solve(t_elem *root_a, t_elem *root_b, int delay)
+
+/*static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
+{
+	int		min_value;
+
+	min_value = 1;
+	while (root_b->next != root_b)
+	{
+		while (ft_get_min(root_b)->nb < min_value)
+		{
+			if (root_b->previous->nb < min_value)
+				exec_ft("pb", root_a, root_b, delay);
+			exec_ft("rb", root_a, root_b, delay);
+		}
+		min_value++;
+	}
+}*/
+
+static void solve_b(t_elem *root_a, t_elem *root_b, int delay)
 {
 	int		size;
 	int		index;
 	t_elem	*tmp;
 
-	size = ft_get_index((root_a)->next);
-	while (issort(root_a) == 0)
+	size = ft_get_index((root_b)->next);
+	while (root_b->next != root_b)
 	{
-		tmp = ft_get_max(root_a);
+		tmp = ft_get_min(root_b);
 		index = ft_get_index(tmp);
 		if (index >size / 2)
 		{
-			while ((root_a)->previous != tmp)
+			while ((root_b)->previous != tmp)
 			{
-				ft_call("rra", root_a, root_b, delay, tmp);
+				exec_ft("rrb", root_a, root_b, delay);
 			}
 		}
 		else
-			while ((root_a)->previous != tmp)
-				ft_call("ra",root_a, root_b, delay, tmp);
-		ft_call("pa", root_a, root_b, delay, 0);
+			while ((root_b)->previous != tmp)
+				exec_ft("rb", root_a, root_b, delay);
+		exec_ft("pb", root_a, root_b, delay);
 		size--;
 	}
-	while ((root_b)->next != root_b)
-		ft_call("pb", root_a, root_b, delay, 0);
+	if (delay != -1)
+		print_stack(root_a, root_b, "", 0);
 }
 
-int				main(int argc, char **argv)
+static void	solve(t_elem *root_a, t_elem *root_b, int delay)
+{
+	t_elem	*max;
+	int		mid_value;
+
+	while (!issort(root_a))
+	{
+		max = ft_get_max(root_a);
+		mid_value = max->nb / 2;
+		while (ft_get_max(root_a)->nb > mid_value && !issort(root_a))
+		{
+			if (root_a->previous->nb > mid_value)
+				exec_ft("pa", root_a, root_b, delay);
+			exec_ft("ra", root_a, root_b, delay);
+		}
+	}
+	solve_b(root_a, root_b, delay);
+}
+
+int			main(int argc, char **argv)
 {
 	t_elem	*root_a;
 	t_elem	*root_b;
-	char	line[5];
 	int		delay;
 
-	ft_bzero(line, 5);
 	root_a = load_a(argc, argv);
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
@@ -96,7 +103,6 @@ int				main(int argc, char **argv)
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
 	else
 		solve(root_a, root_b, delay);
-	//print_stack(root_a, root_b, delay);
 	ft_free(root_a, root_b);
 	return (0);
 }

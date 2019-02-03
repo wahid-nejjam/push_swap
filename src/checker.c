@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/02 04:06:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/02 18:16:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	return ;
 }
 
-static int	exec_ft(char *ft, t_elem *root_a, t_elem *root_b)
+static int	exec_ft_(char *ft, t_elem *root_a, t_elem *root_b)
 {
 	if (ft_strcmp(ft, "sa") == 0)
 		swap(root_a);
@@ -71,9 +71,8 @@ static int	solve(t_elem *root_a, t_elem *root_b)
 	line = NULL;
 	while (get_next_line(0, &line, '\n'))
 	{
-		if (exec_ft(line, root_a, root_b) == -1)
+		if (exec_ft_(line, root_a, root_b) == -1)
 		{
-			printf("Wrong : %s\n", line);
 			free(line);
 			write(2, "Learn how to type, dumbass.\n", 28);
 			return (0);
