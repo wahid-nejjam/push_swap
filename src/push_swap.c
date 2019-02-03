@@ -12,26 +12,7 @@
 
 #include "../include/push_swap.h"
 
-
-
-/*static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
-{
-	int		min_value;
-
-	min_value = 1;
-	while (root_b->next != root_b)
-	{
-		while (ft_get_min(root_b)->nb < min_value)
-		{
-			if (root_b->previous->nb < min_value)
-				exec_ft("pb", root_a, root_b, delay);
-			exec_ft("rb", root_a, root_b, delay);
-		}
-		min_value++;
-	}
-}*/
-
-static void solve_b(t_elem *root_a, t_elem *root_b, int delay)
+static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
 {
 	int		size;
 	int		index;
@@ -64,15 +45,16 @@ static void	solve(t_elem *root_a, t_elem *root_b, int delay)
 	t_elem	*max;
 	int		mid_value;
 
-	while (!issort(root_a))
+	while (!(issort(root_a) && ft_get_min(root_b)->nb > ft_get_max(root_a)->nb))
 	{
 		max = ft_get_max(root_a);
 		mid_value = max->nb / 2;
-		while (ft_get_max(root_a)->nb > mid_value && !issort(root_a))
+		while (ft_get_max(root_a)->nb >= mid_value)
 		{
-			if (root_a->previous->nb > mid_value)
+			if (root_a->previous->nb >= mid_value)
 				exec_ft("pa", root_a, root_b, delay);
-			exec_ft("ra", root_a, root_b, delay);
+			else
+				exec_ft("ra", root_a, root_b, delay);
 		}
 	}
 	solve_b(root_a, root_b, delay);

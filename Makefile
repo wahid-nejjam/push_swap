@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/03 18:50:59 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/03 20:27:32 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,16 +39,18 @@ LIBFT_DIR = ./libft/
 
 LIBFT = ${addprefix $(LIBFT_DIR), $(LIBFT_NAME)}
 
+FLAGS = -Ofast -Wall -Werror -Wextra -pedantic
+
 .PHONY: all clean fclean re
 
 all: $(LIBFT) $(OBJDIR) $(OBJ) $(NAME) $(NAME2)
 
 $(NAME): $(LIBFT) $(OBJDIR) $(OBJ) $(NAME_OBJ)
-	@clang -Werror -Wextra -Wall $(OBJ) ./obj/$(NAME).o -o $(NAME) libft/libft.a
+	@clang $(FLAGS) $(OBJ) ./obj/$(NAME).o -o $(NAME) $(LIBFT)
 	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n      \033[34m\033[1m$(NAME) binary created successfully !\033[0m\n    \-------========= ~~ * ~~ =========-------/\n"
 
 $(NAME2): $(LIBFT) $(OBJDIR) $(OBJ) $(NAME2_OBJ)
-	@clang -Werror -Wextra -Wall $(OBJ) ./obj/$(NAME2).o -o $(NAME2) libft/libft.a
+	@clang $(FLAGS) $(OBJ) ./obj/$(NAME2).o -o $(NAME2) $(LIBFT)
 	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n       \033[33m\033[1m$(NAME2) binary created successfully !\033[0m\n    \-------========= ~~ * ~~ =========-------/\n"
 
 $(LIBFT):
@@ -59,7 +61,7 @@ $(OBJDIR):
 	@echo "\n>========= * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * =========<\n";
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	@clang -Wall -Werror -Wextra -c $< -o $@ 
+	@clang $(FLAGS) -c $< -o $@ 
 	@echo "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : $@\033[0m [$(NAME)]";
 
 re: fclean all
