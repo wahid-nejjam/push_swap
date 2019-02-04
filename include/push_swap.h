@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 15:36:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 19:48:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ t_elem		*ft_get_min(t_elem *root_a);
 t_elem		*ft_get_max(t_elem *root_a);
 int			ft_get_index(t_elem *elem);
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay);
+t_elem		*ft_geti_max(t_elem *root, int index);
+int			heat_size(t_elem *root);
+t_elem		*get_median(t_elem *root);
 
 //printstack
 void	print_sb(t_elem *b);

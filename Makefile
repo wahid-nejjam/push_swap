@@ -6,18 +6,18 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/04 14:17:37 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/04 23:13:45 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap_selection
+NAME = push_swap_quick
 
 NAME2 = checker
 
 HEADER = include/push_swap.h
 
 SRC_NAME = ft_free.c load_a.c new.c push.c rotate.c swap.c utils.c exec_ft.c\
-print_stack_functions.c print_stack.c
+print_stack_functions.c print_stack.c utils_quick.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
