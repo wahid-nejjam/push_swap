@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 14:20:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 15:36:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../libft/libft.h"
 
 # define SEC 1000000
+# define BUFF 2048
 
 typedef struct		s_elem
 {
@@ -65,5 +66,6 @@ void	print_rrb(t_elem *b);
 void	print_sa(t_elem *a, t_elem *mark);
 void	print_rra(t_elem *a, t_elem *mark);
 void	print_ra(t_elem *a, t_elem *mark);
+void    ft_strcat_buff(char *arg, char *buff);
 
 #endif

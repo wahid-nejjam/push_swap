@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 14:17:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 14:29:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ static int		get_print_height(t_elem *a, t_elem *b)
 static void		print_b(t_elem *b, char *ft)
 {
 	if (b->root)
-	{
 		printf("     |\n");
-	}
 	else
 	{
 		if (ft_strcmp(ft, "rb") == 0)
@@ -85,10 +83,12 @@ static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 
 void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 {
-	struct winsize	window;
+	struct 			winsize	window;
 	int				print_height;
+	char			buffer[BUFF + 1];
 
 	ioctl(0, TIOCGWINSZ, &window);
+	ft_bzero(buffer, BUFF + 1);
 	b = b->previous;
 	a = a->previous;
 	print_height = get_print_height(a, b);
