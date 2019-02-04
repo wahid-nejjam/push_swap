@@ -6,24 +6,24 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 14:13:47 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/03 17:27:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 14:21:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	write(1, ft, ft_strlen(ft));
 	write(1, "\n", 1);
 	if (delay != -1)
 	{
 		print_stack(root_a, root_b, ft, 0);
-		usleep(delay);
+		usleep(SEC / delay);
 	}
 }
 
-void	    exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (ft_strcmp(ft, "sa") == 0)
 		swap(root_a);
@@ -47,5 +47,5 @@ void	    exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 		r_rotate(root_b);
 	else if (ft_strcmp(ft, "rrr") == 0)
 		double_r_rotate(root_a, root_b);
-    print(ft, root_a, root_b, delay);
+	print(ft, root_a, root_b, delay);
 }

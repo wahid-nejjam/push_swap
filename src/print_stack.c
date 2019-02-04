@@ -6,13 +6,23 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/03 17:35:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 14:17:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static int	get_print_height(t_elem *a, t_elem *b)
+void			print_sb(t_elem *b)
+{
+	if (b->next->root)
+		printf("[\033[36m%d\033[0m]  |\033[32m<-\\\033[0m\n", b->nb);
+	else if (b->next->next->root)
+		printf("[\033[36m%d\033[0m]  |\033[32m--/\033[0m\n", b->nb);
+	else
+		printf("[\033[36m%d\033[0m]  |  \033[32m|\033[0m\n", b->nb);
+}
+
+static int		get_print_height(t_elem *a, t_elem *b)
 {
 	int		ret;
 
@@ -26,55 +36,34 @@ static int	get_print_height(t_elem *a, t_elem *b)
 	return (ret);
 }
 
-static void		print_ra(t_elem *a, t_elem *mark)
+static void		print_b(t_elem *b, char *ft)
 {
-	if (a->next->root)
-		printf(a != mark ? "\033[32m/->\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m/->\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
-	else if (a->previous->root == 1)
-		printf(a != mark ? "\033[32m\\--\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m\\--\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
+	if (b->root)
+	{
+		printf("     |\n");
+	}
 	else
-		printf(a != mark ? "\033[32m|\033[0m  |  [\033[31m%d\033[0m]     " : "\033[32m|\033[0m  |  [\033[34m%d\033[0m]     ", a->nb);
+	{
+		if (ft_strcmp(ft, "rb") == 0)
+			print_rb(b);
+		else if (ft_strcmp(ft, "rrb") == 0)
+			print_rrb(b);
+		else if (ft_strcmp(ft, "sb") == 0)
+			print_sb(b);
+		else
+			printf("[\033[36m%d\033[0m]  |\n", b->nb);
+	}
 }
 
-static void		print_rra(t_elem *a, t_elem *mark)
+static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 {
-	if (a->next->root)
-		printf(a != mark ? "\033[32m/--\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m/--\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
-	else if (a->previous->root)
-		printf(a != mark ? "\033[32m\\->\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m\\->\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
+	if (a->root)
+	{
+		print_char_str(' ', (col / 2) - 10);
+		printf("|          ");
+	}
 	else
-		printf(a != mark ? "\033[32m|\033[0m  |  [\033[31m%d\033[0m]     " : "\033[32m|\033[0m  |  [\033[34m%d\033[0m]     ", a->nb);
-}
-
-static void		print_sa(t_elem *a, t_elem *mark)
-{
-	if (a->next->root)
-		printf(a != mark ? "\033[32m/--\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m/--\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
-	else if (a->next->next->root)
-		printf(a != mark ? "\033[32m\\->\033[0m|  [\033[31m%d\033[0m]     " : "\033[32m\\->\033[0m|  [\033[34m%d\033[0m]     ", a->nb);
-	else
-		printf(a != mark ? "   |  [\033[31m%d\033[0m]     " : "   |  [\033[34m%d\033[0m]     ", a->nb);
-}
-
-static void		print_rb(t_elem *b)
-{
-	if (b->next->root)
-		printf(b->root ? "     |\033[32m<-\\\033[0m\n" : "[\033[36m%d\033[0m]  |\033[32m<-\\\033[0m\n", b->nb);
-	else if (b->previous->root)
-		printf(b->root ? "     |\033[32m--/\033[0m\n" : "[\033[36m%d\033[0m]  |\033[32m--/\033[0m\n", b->nb);
-	else
-		printf(b->root ? "     |  \033[32m|\033[0m\n" : "[\033[36m%d\033[0m]  |  \033[32m|\033[0m\n", b->nb);
-}
-
-static void		print_body(int col, t_elem *a, t_elem *b, t_elem *mark, char *ft)
-{
-		if (a->root)
-		{
-			print_char_str(' ', (col / 2) - 10);
-			printf("|          ");
-			printf(b->root ? "     |\n" : "[\033[36m%d\033[0m]  |\n", b->nb);
-			return ;
-		}
+	{
 		print_char_str(' ', (col / 2) - 13);
 		if (ft_strcmp(ft, "ra") == 0)
 			print_ra(a, mark);
@@ -83,22 +72,22 @@ static void		print_body(int col, t_elem *a, t_elem *b, t_elem *mark, char *ft)
 		else if (ft_strcmp(ft, "sa") == 0)
 			print_sa(a, mark);
 		else if (ft_strcmp(ft, "pa") == 0 && a->next->root)
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" : "   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
+			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
+"   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
 		else if (ft_strcmp(ft, "pb") == 0 && a->next->root)
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" : "   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
+			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
+"   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
 		else
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]     ": "   |  [\033[34m%d\033[0m]     ", a->nb);
-		if (ft_strcmp(ft, "rb") == 0)
-			print_rb(b);
-		else
-			printf(b->root ? "     |\n" : "[\033[36m%d\033[0m]  |\n", b->nb);
+			printf(a != mark ? "   |  [\033[31m%d\033[0m]     " :
+"   |  [\033[34m%d\033[0m]     ", a->nb);
+	}
 }
 
-void		print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
+void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 {
 	struct winsize	window;
 	int				print_height;
-	
+
 	ioctl(0, TIOCGWINSZ, &window);
 	b = b->previous;
 	a = a->previous;
@@ -110,7 +99,8 @@ void		print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 	write(1, "    /  A  \\./  B  \\\n", 20);
 	while (!a->root || !b->root)
 	{
-		print_body(window.ws_col, a, b, mark, ft);
+		print_a(window.ws_col, a, mark, ft);
+		print_b(b, ft);
 		a = (a->root ? a : a->previous);
 		b = (b->root ? b : b->previous);
 	}

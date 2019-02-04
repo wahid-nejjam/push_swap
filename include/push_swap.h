@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/03 14:13:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 14:20:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <sys/ioctl.h>
 # include "../libft/libft.h"
+
+# define SEC 1000000
 
 typedef struct		s_elem
 {
@@ -55,5 +57,13 @@ t_elem		*ft_get_min(t_elem *root_a);
 t_elem		*ft_get_max(t_elem *root_a);
 int			ft_get_index(t_elem *elem);
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay);
+
+//printstack
+void	print_sb(t_elem *b);
+void	print_rb(t_elem *b);
+void	print_rrb(t_elem *b);
+void	print_sa(t_elem *a, t_elem *mark);
+void	print_rra(t_elem *a, t_elem *mark);
+void	print_ra(t_elem *a, t_elem *mark);
 
 #endif

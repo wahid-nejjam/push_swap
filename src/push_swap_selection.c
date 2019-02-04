@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 10:23:51 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/03 18:09:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/04 14:21:08 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_call(char *ft, t_elem *root_a, t_elem *root_b, int delay, t_elem 
 	if (delay != -1)
 	{
 		print_stack(root_a, root_b, ft, mark);
-		usleep(delay);
+		usleep(SEC / delay);
 	}
 }
 
@@ -68,7 +68,10 @@ static void solve(t_elem *root_a, t_elem *root_b, int delay)
 	while ((root_b)->next != root_b)
 		ft_call("pb", root_a, root_b, delay, 0);
 	if (delay != -1)
-		print_stack(root_a, root_b, "", 0);
+	{
+		print_stack(root_a, root_b, "  ", 0);
+		usleep(SEC / delay);
+	}
 }
 
 int				main(int argc, char **argv)
