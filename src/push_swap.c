@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 22:49:37 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 22:49:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/05 20:12:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,6 @@ static void cut_b(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
 static void	solve(t_elem *root_a, t_elem *root_b, int delay)
 {
 	t_elem	*max;
-
-	while (root_a->next != root_a)
-	{
-		max = ft_get_max(root_a);
-		cut_a(root_a, root_b, max, delay);
-		max = ft_get_max(root_b);
-		cut_b(root_a, root_b, max, delay);
-
-	}
-	solve_b(root_a, root_b, delay);
-}
-
-/*static void	solve(t_elem *root_a, t_elem *root_b, int delay)
-{
-	t_elem	*max;
 	int		mid_value;
 
 	while (!(issort(root_a) && ft_get_min(root_b)->nb > ft_get_max(root_a)->nb) && root_a->next != root_a)
@@ -109,7 +94,7 @@ static void	solve(t_elem *root_a, t_elem *root_b, int delay)
 		}
 	}
 	solve_b(root_a, root_b, delay);
-}*/
+}
 
 int			main(int argc, char **argv)
 {

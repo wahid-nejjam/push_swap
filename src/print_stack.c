@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 14:29:29 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/05 20:09:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 	b = b->previous;
 	a = a->previous;
 	print_height = get_print_height(a, b);
+	if (window.ws_row < heat_size(a))
+	{
+		write(2, "Way too big !\n", 13);
+		return ;
+	}
 	print_char_str('\n', (window.ws_row - print_height) / 2);
 	print_char_str(' ', (window.ws_col / 2) - 13);
 	write(1, "     /{Push_swap}\\ \n", 20);

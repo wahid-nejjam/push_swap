@@ -6,13 +6,41 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 23:12:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/05 20:12:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	insertsort_a_to_b(t_elem *root_a, t_elem *root_b, int delay)
+static void	solve_a(t_elem *root_a, t_elem *root_b, int delay)
+{
+	int		size;
+	int		index;
+	t_elem	*tmp;
+
+	size = ft_get_index((root_a)->next);
+	while (root_a->next != root_a)
+	{
+		tmp = ft_get_min(root_a);
+		index = ft_get_index(tmp);
+		if (index >size / 2)
+		{
+			while ((root_a)->previous != tmp)
+			{
+				exec_ft("rra", root_a, root_b, delay);
+			}
+		}
+		else
+			while ((root_a)->previous != tmp)
+				exec_ft("ra", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
+		size--;
+	}
+	if (delay != -1)
+		print_stack(root_a, root_b, "", 0);
+}
+
+static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
 {
 	int		size;
 	int		index;
@@ -40,37 +68,71 @@ static void	insertsort_a_to_b(t_elem *root_a, t_elem *root_b, int delay)
 		print_stack(root_a, root_b, "", 0);
 }
 
-static void		solve_once(t_elem *root_a, t_elem *root_b, int size, int delay)
+static void cut_a(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
 {
-	t_elem	*mid;
-	int		max;
-
-	max = size;
-	mid = get_median(size > 0 ? root_a : root_b);
-	printf("mid %d top_nb %d iter %d size %d getimax %d\n", mid->nb, root_a->previous->nb, max, size, ft_geti_max(mid, size)->nb);
-	while (ft_geti_max(root_a, size)->nb > mid->nb && max-- >= 0)
+	int		mid_value;
+	
+	if (start->next->next == root_a)
+		return ;
+	mid_value = start->nb;
+	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
 	{
-		if (root_a->previous->nb > mid->nb)
-			exec_ft(size > 0 ? "pa" : "pb", root_a, root_b, delay);
+		if (root_a->previous->nb >= mid_value)
+			exec_ft("pa", root_a, root_b, delay);
 		else
-			exec_ft(size > 0 ? "ra" : "sb", root_a, root_b, delay);
-		printf("mid %d nb %d iter %d size %d\n", mid->nb, root_a->previous->nb, max, size);
+			exec_ft("ra", root_a, root_b, delay);
 	}
 }
 
-static void		solve(t_elem *root_a, t_elem *root_b, int size, int delay)
+static void cut_b(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
 {
-	if (size >= -15 && size <= 15)
+	int		mid_value;
+
+	if (start->next->next == root_b)
+		return ;
+	mid_value = start->nb;
+	while (ft_get_min(root_b)->nb <= mid_value && root_b->next != root_b)
 	{
-		solve_once(root_a, root_b, size, delay);
-		solve_once(root_a, root_b, size, delay);
-		insertsort_a_to_b(root_a, root_b, delay);
+		if (root_b->previous->nb <= mid_value)
+			exec_ft("pb", root_a, root_b, delay);
+		else
+			exec_ft("rb", root_a, root_b, delay);
 	}
-	else
+}
+
+
+static void		solve(t_elem *root_a, t_elem *root_b, int delay)
+{
+	t_elem	*mid;
+	int		size;
+
+	while (root_a->next != root_a)
 	{
-		solve_once(root_a, root_b, size, delay);
-		solve(root_a, root_b, size / 2, delay);
+		mid = get_median(root_a);
+		cut_a(root_a, root_b, mid, delay);
+		if (heat_size(root_b) < 10)
+			solve_a(root_a, root_b, delay);
 	}
+	size = heat_size(root_b);
+	while (size > 40)
+	{
+		while (root_b->next != root_b)
+		{
+			mid = get_median(root_b);
+			cut_b(root_a, root_b, mid, delay);
+			if (heat_size(root_b) < 10)
+				solve_b(root_a, root_b, delay);
+		}
+		while (root_a->next != root_a)
+		{
+			mid = get_median(root_a);
+			cut_a(root_a, root_b, mid, delay);
+			if (heat_size(root_b) < 10)
+				solve_a(root_a, root_b, delay);
+		}
+		size /= 2;
+	}
+	solve_b(root_a, root_b, delay);
 }
 
 int			main(int argc, char **argv)
@@ -97,7 +159,7 @@ int			main(int argc, char **argv)
 	if (root_a == NULL)
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
 	else
-		solve(root_a, root_b, heat_size(root_a), delay);
+		solve(root_a, root_b, delay);
 	ft_free(root_a, root_b);
 	return (0);
 }
