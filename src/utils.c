@@ -6,27 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:43:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 18:58:18 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/06 06:22:32 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-int		isrsort(t_elem *root)
-{
-	t_elem	*tmp;
-
-	if (root->next == root)
-		return (1);
-	tmp = root->next;
-	while (!tmp->next->root)
-	{
-		if (tmp->nb < tmp->next->nb)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
 
 int		issort(t_elem *root)
 {

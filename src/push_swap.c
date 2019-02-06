@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 22:49:37 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/05 20:12:40 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/05 20:35:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,7 @@ int			main(int argc, char **argv)
 	root_b->next = root_b;
 	root_b->previous = root_b;
 	if (argc > 2 && argv[argc - 1][0] == '-')
-	{
 		delay = ft_atoi(&(argv[argc - 1][1]));
-	}
 	else
 		delay = -1;
 	if (root_a == NULL)

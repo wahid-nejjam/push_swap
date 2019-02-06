@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/05 17:03:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/06 06:22:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "../libft/libft.h"
 
 # define SEC 1000000
-# define BUFF 2048
 
 typedef struct		s_elem
 {
@@ -53,24 +52,21 @@ void		print_stack(t_elem *root_a, t_elem *root_b, char *ft, t_elem *mark);
 void		ft_free(t_elem *root_a, t_elem *root_b);
 t_elem		*new(int nb, t_elem *next, t_elem *previous, char root);
 int			issort(t_elem *root_a);
-int			isrsort(t_elem *root_a);
 t_elem		*ft_get_min(t_elem *root_a);
 t_elem		*ft_get_max(t_elem *root_a);
 int			ft_get_index(t_elem *elem);
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay);
-t_elem		*ft_geti_max(t_elem *root, int index);
-t_elem		*ft_geti_min(t_elem *root, int index);
 t_elem		*get_at_index(t_elem *root, int index);
 int			heat_size(t_elem *root);
-t_elem		*get_median(t_elem *root);
+int			get_median(t_elem *root);
 
 //printstack
-void	print_sb(t_elem *b);
 void	print_rb(t_elem *b);
 void	print_rrb(t_elem *b);
 void	print_sa(t_elem *a, t_elem *mark);
+void	print_sb(t_elem *b);
 void	print_rra(t_elem *a, t_elem *mark);
 void	print_ra(t_elem *a, t_elem *mark);
-void    ft_strcat_buff(char *arg, char *buff);
+int		get_print_height(t_elem *a, t_elem *b);
 
 #endif
