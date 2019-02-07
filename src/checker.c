@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/02 18:16:35 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/06 21:32:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,16 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	return ;
 }
 
-static int	exec_ft_(char *ft, t_elem *root_a, t_elem *root_b)
+static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+{
+	if (delay != -1)
+	{
+		print_stack(root_a, root_b, ft, 0);
+		usleep(SEC / delay);
+	}
+}
+
+static int	exec_ft_(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (ft_strcmp(ft, "sa") == 0)
 		swap(root_a);
@@ -61,17 +70,18 @@ static int	exec_ft_(char *ft, t_elem *root_a, t_elem *root_b)
 		double_r_rotate(root_a, root_b);
 	else
 		return (-1);
+	print(ft, root_a, root_b, delay);
 	return (1);
 }
 
-static int	solve(t_elem *root_a, t_elem *root_b)
+static int	solve(t_elem *root_a, t_elem *root_b, int delay)
 {
 	char *line;
 
 	line = NULL;
 	while (get_next_line(0, &line, '\n'))
 	{
-		if (exec_ft_(line, root_a, root_b) == -1)
+		if (exec_ft_(line, root_a, root_b, delay) == -1)
 		{
 			free(line);
 			write(2, "Learn how to type, dumbass.\n", 28);
@@ -86,6 +96,7 @@ int			main(int argc, char **argv)
 {
 	t_elem	*root_a;
 	t_elem	*root_b;
+	int		delay;
 
 	if (!(root_a = load_a(argc, argv)))
 		exit_("THERE IS NO LIST NIGGA\n");
@@ -96,7 +107,13 @@ int			main(int argc, char **argv)
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
-	if (solve(root_a, root_b))
+	if (argc > 2 && argv[argc - 1][0] == 'c')
+	{
+		delay = ft_atoi(&(argv[argc - 1][1]));
+	}
+	else
+		delay = -1;
+	if (solve(root_a, root_b, delay))
 		is_sort(root_a, root_b);
 	ft_free(root_a, root_b);
 	return (0);

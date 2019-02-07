@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 06:10:23 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/07 03:31:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,20 @@ static void cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 
 static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 {
-	int		mid;
-
 	while (root_a->next != root_a && !issort(root_a))
 	{
-		mid = get_median(root_a);
-		cut_a(root_a, root_b, mid, delay);
-		if (heat_size(root_a) <= 15)
+		cut_a(root_a, root_b, get_median(root_a), delay);
+		if (heat_size(root_a) <= MIN)
 			solve_a(root_a, root_b, heat_size(root_a), delay);
 	}
-	if (heat_size(root_b) > 50)
+	while (heat_size(root_b) > MIN * 2)
 	{
-		solve_b(root_a, root_b, (heat_size(root_b) / 2), delay);
-		while (root_b->next != root_b)
-		{
-			mid = get_median(root_b);
-			cut_b(root_a, root_b, mid, delay);
-			if (heat_size(root_b) <= 15)
-				solve_b(root_a, root_b, heat_size(root_b), delay);
-		}
-		while (heat_size(root_b) < heat_size(root_a))
+		solve_b(root_a, root_b, MIN * 2, delay);
+		while (heat_size(root_b) > 0)
+			cut_b(root_a, root_b, get_median(root_b), delay);
+		while (!issort(root_a))
 			exec_ft("pa", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
 	}
 	solve_b(root_a, root_b, heat_size(root_b), delay);
 }
@@ -125,7 +118,7 @@ int			main(int argc, char **argv)
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
-	if (argc > 2 && argv[argc - 1][0] == '-')
+	if (argc > 2 && argv[argc - 1][0] == 'c')
 	{
 		delay = ft_atoi(&(argv[argc - 1][1]));
 	}

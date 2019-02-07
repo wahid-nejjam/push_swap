@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 18:30:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 06:22:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/06 23:37:59 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,19 @@ int		heat_size(t_elem *root)
 		root = root->next;
 	}
 	return (i);
+}
+
+int		not_sort(t_elem	*root)
+{
+	int 	ret;
+	t_elem	*tmp;
+
+	ret = 0;
+	tmp = root->previous;
+	while (!issort(tmp))
+	{
+		tmp = tmp->next;
+		ret++;
+	}
+	return (ret);
 }
