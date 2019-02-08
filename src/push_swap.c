@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 14:21:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 15:13:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,14 @@ static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 		if (heap_size(root_a) <= MIN)
 			solve_a(root_a, root_b, heap_size(root_a), delay);
 	}
-	while (heap_size(root_b) > MIN * 2)
+	while (heap_size(root_b) >= MIN * 2)
 	{
 		solve_b(root_a, root_b, MIN * 2, delay);
 		while (heap_size(root_b) > 0)
 			cut_b(root_a, root_b, get_median(root_b), delay);
 		while (!issort(root_a))
 			exec_ft("pa", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
 		exec_ft("pa", root_a, root_b, delay);
 	}
 	solve_b(root_a, root_b, heap_size(root_b), delay);

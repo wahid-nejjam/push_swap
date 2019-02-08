@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 21:32:47 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 15:02:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 			write(1, "KO\n", 3);
 			return ;
 		}
+		ft_printf("%d %d\n", tmp->nb, tmp->next->nb);
 		tmp = tmp->next;
 	}
 	if (root_b->previous != root_b || root_b->next != root_b)
