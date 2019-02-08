@@ -6,11 +6,11 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/01/30 12:52:33 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/07 16:11:25 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 HEADER = ./includes/ft_printf.h
 
@@ -30,27 +30,24 @@ OBJ = ${addprefix $(OBJDIR), $(OBJ_NAME)}
 
 .PHONY: all obj re clean fclean
 
-all: $(NAME)
+all: $(OBJDIR) $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\n    /-------========= ~~ * ~~ =========-------\ \n-* |    \033[34m\033[1m$(NAME) created successfully !\033[0m   | *-\n    \-------========= ~~ * ~~ =========-------/\n"
 
-obj:
+$(OBJDIR):
 	@mkdir -p $(OBJDIR)
-	@echo "\n>========= * \033[35m\033[1mCreating obj dir\033[0m * =========<\n"
+	@echo "\n>========= * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * =========<\n";
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@clang -Ofast -Wall -Werror -Wextra -c $< -o $@ 
-	@echo "\033[35mCompilating : $@\033[0m";
+	@echo "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : $@\033[0m [$(NAME)]";
 
 re: fclean all
 
 clean:
-	@rm -rf $(OBJDIR)/*
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "               ~ --- ~\n*< \033[36mEverything has been removed.\033[0m >*\n               ~ --- ~"
-

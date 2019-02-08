@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 10:23:51 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/04 16:17:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/07 15:27:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int				main(int argc, char **argv)
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
-	if (argc > 2 && argv[argc - 1][0] == '-')
+	if (argc > 2 && argv[argc - 1][0] == 'c')
 	{
 		delay = ft_atoi(&(argv[argc - 1][1]));
 	}

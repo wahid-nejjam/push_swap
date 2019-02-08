@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 23:07:50 by conoel            #+#    #+#             */
-/*   Updated: 2019/01/30 12:14:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/07 15:38:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <strings.h>
 # include <errno.h>
+# include "printf.h"
+
 # define BUFF 2048
 # define I all->str_index
 

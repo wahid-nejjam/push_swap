@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 03:27:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 14:22:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <sys/ioctl.h>
 # include "../libft/libft.h"
+# include "../printf/includes/printf.h"
 
 # define SEC 1000000
 # define MIN 30
@@ -58,7 +59,7 @@ t_elem		*ft_get_max(t_elem *root_a);
 int			ft_get_index(t_elem *elem);
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay);
 t_elem		*get_at_index(t_elem *root, int index);
-int			heat_size(t_elem *root);
+int			heap_size(t_elem *root);
 int			get_median(t_elem *root);
 int			not_sort(t_elem	*root);
 

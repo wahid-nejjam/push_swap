@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 03:31:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 14:21:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
+static void		solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
 {
 	int		size;
 	int		index;
@@ -36,7 +36,7 @@ static void	solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
 		print_stack(root_a, root_b, "", 0);
 }
 
-static void	solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
+static void		solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 {
 	int		size;
 	int		index;
@@ -60,7 +60,7 @@ static void	solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 		print_stack(root_a, root_b, "", 0);
 }
 
-static void cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+static void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
 	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
 	{
@@ -71,7 +71,7 @@ static void cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 	}
 }
 
-static void cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+static void 	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
 	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
 	{
@@ -82,25 +82,24 @@ static void cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 	}
 }
 
-
 static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 {
 	while (root_a->next != root_a && !issort(root_a))
 	{
 		cut_a(root_a, root_b, get_median(root_a), delay);
-		if (heat_size(root_a) <= MIN)
-			solve_a(root_a, root_b, heat_size(root_a), delay);
+		if (heap_size(root_a) <= MIN)
+			solve_a(root_a, root_b, heap_size(root_a), delay);
 	}
-	while (heat_size(root_b) > MIN * 2)
+	while (heap_size(root_b) > MIN * 2)
 	{
 		solve_b(root_a, root_b, MIN * 2, delay);
-		while (heat_size(root_b) > 0)
+		while (heap_size(root_b) > 0)
 			cut_b(root_a, root_b, get_median(root_b), delay);
 		while (!issort(root_a))
 			exec_ft("pa", root_a, root_b, delay);
 		exec_ft("pa", root_a, root_b, delay);
 	}
-	solve_b(root_a, root_b, heat_size(root_b), delay);
+	solve_b(root_a, root_b, heap_size(root_b), delay);
 }
 
 int			main(int argc, char **argv)

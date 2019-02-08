@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 02:15:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/07 16:11:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		print_b(t_elem *b, char *ft)
 {
 	if (b->root)
-		printf("     |\n");
+		ft_printf("     |\n");
 	else
 	{
 		if (ft_strcmp(ft, "rb") == 0)
@@ -25,7 +25,7 @@ static void		print_b(t_elem *b, char *ft)
 		else if (ft_strcmp(ft, "sb") == 0)
 			print_sb(b);
 		else
-			printf("[\033[36m%d\033[0m]  |\n", b->nb);
+			ft_printf("[\033[36m%d\033[0m]  |\n", b->nb);
 	}
 }
 
@@ -34,7 +34,7 @@ static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 	if (a->root)
 	{
 		print_char_str(' ', (col / 2) - 10);
-		printf("|          ");
+		ft_printf("|          ");
 	}
 	else
 	{
@@ -46,13 +46,13 @@ static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 		else if (ft_strcmp(ft, "sa") == 0)
 			print_sa(a, mark);
 		else if (ft_strcmp(ft, "pa") == 0 && a->next->root)
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
+			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
 "   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
 		else if (ft_strcmp(ft, "pb") == 0 && a->next->root)
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
+			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
 "   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
 		else
-			printf(a != mark ? "   |  [\033[31m%d\033[0m]     " :
+			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]     " :
 "   |  [\033[34m%d\033[0m]     ", a->nb);
 	}
 }
@@ -66,7 +66,7 @@ void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 	b = b->previous;
 	a = a->previous;
 	print_height = get_print_height(a, b);
-	if (window.ws_row < heat_size(a))
+	if (window.ws_row < heap_size(a))
 	{
 		write(2, "Way too big !\n", 13);
 		return ;
