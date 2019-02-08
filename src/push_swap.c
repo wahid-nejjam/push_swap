@@ -1,35 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_quick.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/04 22:49:37 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 21:28:46 by conoel           ###   ########.fr       */
+/*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
+/*   Updated: 2019/02/08 14:21:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
+static void		solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
+{
+	int		size;
+	int		index;
+	t_elem	*tmp;
+
+	size = ft_get_index((root_a)->next);
+	while (root_a->next != root_a && max--)
+	{
+		tmp = ft_get_max(root_a);
+		index = ft_get_index(tmp);
+		if (index > size / 2)
+			while ((root_a)->previous != tmp)
+				exec_ft("rra", root_a, root_b, delay);
+		else
+			while ((root_a)->previous != tmp)
+				exec_ft("ra", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
+		size--;
+	}
+	if (delay != -1)
+		print_stack(root_a, root_b, "", 0);
+}
+
+static void		solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 {
 	int		size;
 	int		index;
 	t_elem	*tmp;
 
 	size = ft_get_index((root_b)->next);
-	while (root_b->next != root_b)
+	while (root_b->next != root_b && max--)
 	{
 		tmp = ft_get_min(root_b);
 		index = ft_get_index(tmp);
-		if (index >size / 2)
-		{
+		if (index > size / 2)
 			while ((root_b)->previous != tmp)
-			{
 				exec_ft("rrb", root_a, root_b, delay);
-			}
-		}
 		else
 			while ((root_b)->previous != tmp)
 				exec_ft("rb", root_a, root_b, delay);
@@ -40,15 +60,8 @@ static void	solve_b(t_elem *root_a, t_elem *root_b, int delay)
 		print_stack(root_a, root_b, "", 0);
 }
 
-static void cut_a(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
+static void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
-	t_elem	*max;
-	int		mid_value;
-	
-	if (start->next->next == root_a)
-		return ;
-	max = ft_get_max(start);
-	mid_value = max->nb / 2;
 	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
 	{
 		if (root_a->previous->nb >= mid_value)
@@ -58,15 +71,8 @@ static void cut_a(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
 	}
 }
 
-static void cut_b(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
+static void 	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
-	t_elem	*max;
-	int		mid_value;
-	
-	if (start->next->next == root_b)
-		return ;
-	max = ft_get_max(start);
-	mid_value = max->nb / 2;
 	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
 	{
 		if (root_b->previous->nb >= mid_value)
@@ -76,24 +82,24 @@ static void cut_b(t_elem *root_a, t_elem *root_b, t_elem *start, int delay)
 	}
 }
 
-static void	solve(t_elem *root_a, t_elem *root_b, int delay)
+static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 {
-	t_elem	*max;
-	int		mid_value;
-
-	while (!(issort(root_a) && ft_get_min(root_b)->nb > ft_get_max(root_a)->nb) && root_a->next != root_a)
+	while (root_a->next != root_a && !issort(root_a))
 	{
-		max = ft_get_max(root_a);
-		mid_value = max->nb / 2;
-		while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
-		{
-			if (root_a->previous->nb >= mid_value)
-				exec_ft("pa", root_a, root_b, delay);
-			else
-				exec_ft("ra", root_a, root_b, delay);
-		}
+		cut_a(root_a, root_b, get_median(root_a), delay);
+		if (heap_size(root_a) <= MIN)
+			solve_a(root_a, root_b, heap_size(root_a), delay);
 	}
-	solve_b(root_a, root_b, delay);
+	while (heap_size(root_b) > MIN * 2)
+	{
+		solve_b(root_a, root_b, MIN * 2, delay);
+		while (heap_size(root_b) > 0)
+			cut_b(root_a, root_b, get_median(root_b), delay);
+		while (!issort(root_a))
+			exec_ft("pa", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
+	}
+	solve_b(root_a, root_b, heap_size(root_b), delay);
 }
 
 int			main(int argc, char **argv)
@@ -112,7 +118,9 @@ int			main(int argc, char **argv)
 	root_b->next = root_b;
 	root_b->previous = root_b;
 	if (argc > 2 && argv[argc - 1][0] == 'c')
+	{
 		delay = ft_atoi(&(argv[argc - 1][1]));
+	}
 	else
 		delay = -1;
 	if (root_a == NULL)
@@ -120,5 +128,4 @@ int			main(int argc, char **argv)
 	else
 		solve(root_a, root_b, delay);
 	ft_free(root_a, root_b);
-	return (0);
 }
