@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 14:22:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 23:16:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ t_elem		*get_at_index(t_elem *root, int index);
 int			heap_size(t_elem *root);
 int			get_median(t_elem *root);
 int			not_sort(t_elem	*root);
+void		cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
+void 		cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
+int			ft_atoi_error(const char *nptr);
 
-//printstack
 void	print_rb(t_elem *b);
 void	print_rrb(t_elem *b);
 void	print_sa(t_elem *a, t_elem *mark);

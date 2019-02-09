@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_quick.c                                  :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 15:13:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 23:24:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,6 @@ static void		solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 		print_stack(root_a, root_b, "", 0);
 }
 
-static void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
-{
-	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
-	{
-		if (root_a->previous->nb >= mid_value)
-			exec_ft("pa", root_a, root_b, delay);
-		else
-			exec_ft("ra", root_a, root_b, delay);
-	}
-}
-
-static void 	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
-{
-	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
-	{
-		if (root_b->previous->nb >= mid_value)
-			exec_ft("pb", root_a, root_b, delay);
-		else
-			exec_ft("rb", root_a, root_b, delay);
-	}
-}
-
 static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 {
 	while (root_a->next != root_a && !issort(root_a))
@@ -97,8 +75,6 @@ static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 			cut_b(root_a, root_b, get_median(root_b), delay);
 		while (!issort(root_a))
 			exec_ft("pa", root_a, root_b, delay);
-		exec_ft("pa", root_a, root_b, delay);
-		exec_ft("pa", root_a, root_b, delay);
 	}
 	solve_b(root_a, root_b, heap_size(root_b), delay);
 }

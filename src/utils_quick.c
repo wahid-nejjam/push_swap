@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 18:30:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 18:12:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/08 23:16:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,26 @@ int		not_sort(t_elem	*root)
 		ret++;
 	}
 	return (ret);
+}
+
+void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+{
+	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
+	{
+		if (root_a->previous->nb >= mid_value)
+			exec_ft("pa", root_a, root_b, delay);
+		else
+			exec_ft("ra", root_a, root_b, delay);
+	}
+}
+
+void 	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+{
+	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
+	{
+		if (root_b->previous->nb >= mid_value)
+			exec_ft("pb", root_a, root_b, delay);
+		else
+			exec_ft("rb", root_a, root_b, delay);
+	}
 }

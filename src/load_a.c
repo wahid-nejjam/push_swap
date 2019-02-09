@@ -6,11 +6,47 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 21:27:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/09 00:49:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+static int		check(t_elem *root_a)
+{
+	int		*all;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	if (!(all = malloc(sizeof (int) * (heap_size(root_a) + 1))))
+		exit_(NULL);
+	root_a = root_a->next;
+	while (!root_a->root)
+	{
+		all[i++] = root_a->nb;
+		root_a = root_a->next;
+	}
+	while (j < i)
+	{
+		k = 0;
+		while (k < i)
+		{
+			if (all[k] == all[j] && k != j)
+			{
+				free(all);
+				return (0);
+			}
+			k++;
+		}
+		j++;
+	}
+	free(all);
+	return (1);
+}
 
 static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 {
@@ -18,11 +54,11 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 	t_elem	*tmp;
 
 	i = (argc == 3 && visu) ? 1 : 0;
-	tmp = root_a->next;
+	tmp = root_a;
 	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL : ++i < (size_t)argc)
 	{
-		if (argv[i][0] != '-')
-			if (!(tmp = new(ft_atoi(argv[i]), root_a, tmp, 0)))
+		if (argv[i][0] != 'c')
+			if (!(tmp = new(ft_atoi_error(argv[i]), root_a, tmp, 0)))
 				return ;
 		tmp->previous->next = tmp;
 	}
@@ -48,8 +84,14 @@ t_elem			*load_a(int argc, char **argv)
 	if (!(root_a->next = new(ft_atoi(argv[i]), root_a, root_a, 0)))
 		return (NULL);
 	root_a->previous = root_a->next;
+	printf("okay");
 	get_all(argc, argv, root_a, visu);
 	if (argc == 2)
 		free(argv);
+	if (check(root_a) == 0)
+	{
+		ft_free(root_a, NULL);
+		exit_("Two identical numbers !\n");
+	}
 	return (root_a);
 }
