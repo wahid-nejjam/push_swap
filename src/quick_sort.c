@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 23:24:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 11:55:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void		solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
 		exec_ft("pa", root_a, root_b, delay);
 		size--;
 	}
-	if (delay != -1)
-		print_stack(root_a, root_b, "", 0);
 }
 
 static void		solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
@@ -56,11 +54,36 @@ static void		solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 		exec_ft("pb", root_a, root_b, delay);
 		size--;
 	}
-	if (delay != -1)
-		print_stack(root_a, root_b, "", 0);
 }
 
-static void		solve(t_elem *root_a, t_elem *root_b, int delay)
+/*mvoid		solve_list(t_elem *root_a, t_elem *root_b, int delay)
+{
+	int size;
+
+	size = heap_size(root_a);
+	while (root_a->next != root_a && !issort(root_a))
+	{
+		cut_a(root_a, root_b, get_median(root_a), delay);
+		size /= 2;
+		if (heap_size(root_a) <= MIN)
+			while (root_a->next != root_a)
+				exec_ft("pa", root_a, root_b, delay);
+	}
+	solve_b(root_a, root_b, size * 2, delay);
+	size = heap_size(root_b);
+	while (heap_size(root_b) > MIN * 2)
+	{
+		cut_b(root_a, root_b, get_median(root_b), delay);
+		size /= 2;
+	}
+	solve_b(root_a, root_b, heap_size(root_b), delay);
+	solve_a(root_a, root_b, size * 2, delay);
+	while (root_a->next != root_a && !issort(root_a))
+		cut_a(root_a, root_b, get_median(root_a), delay);
+	solve_b(root_a, root_b, heap_size(root_b), delay);
+}*/
+
+void		solve_list(t_elem *root_a, t_elem *root_b, int delay)
 {
 	while (root_a->next != root_a && !issort(root_a))
 	{
@@ -70,11 +93,12 @@ static void		solve(t_elem *root_a, t_elem *root_b, int delay)
 	}
 	while (heap_size(root_b) >= MIN * 2)
 	{
-		solve_b(root_a, root_b, MIN * 2, delay);
+		solve_b(root_a, root_b, MIN * 3, delay);
 		while (heap_size(root_b) > 0)
 			cut_b(root_a, root_b, get_median(root_b), delay);
 		while (!issort(root_a))
 			exec_ft("pa", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
 	}
 	solve_b(root_a, root_b, heap_size(root_b), delay);
 }
@@ -103,6 +127,6 @@ int			main(int argc, char **argv)
 	if (root_a == NULL)
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
 	else
-		solve(root_a, root_b, delay);
+		small_sort(root_a, root_b, delay);
 	ft_free(root_a, root_b);
 }

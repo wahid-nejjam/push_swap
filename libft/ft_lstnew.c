@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 13:41:24 by conoel            #+#    #+#             */
-/*   Updated: 2018/11/16 12:30:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 12:30:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 		elem->content = NULL;
 	else
 	{
-		elem->content = (void *)malloc(ft_strlen(content) + 1);
+		elem->content = (void *)malloc(sizeof(char) * ft_strlen(content) + 1);
 		if (!elem->content)
 		{
 			free(elem);

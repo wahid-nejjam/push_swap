@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 23:16:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 11:56:07 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../printf/includes/printf.h"
 
 # define SEC 1000000
-# define MIN 30
+# define MIN 25
 
 typedef struct		s_elem
 {
@@ -32,14 +32,14 @@ typedef struct		s_elem
 	struct s_elem	*previous;
 }					t_elem;
 
-typedef struct		s_ft
-{
-	char			ft[5];
-	int				index;
-	struct s_ft		*next;
-}					t_ft;
-
-//	operations
+/*
+** push_swap
+*/
+void		solve_list(t_elem *root_a, t_elem *root_b, int delay);
+void		small_sort(t_elem *root_a, t_elem *root_b, int delay);
+/*
+**	operations
+*/
 void		swap(t_elem *last_a);
 void		double_swap(t_elem *last_a, t_elem *last_b);
 void		rotate(t_elem *last);
@@ -48,7 +48,9 @@ void		r_rotate(t_elem *last);
 void		double_r_rotate(t_elem *last_a, t_elem *last_b);
 void		push(t_elem *last_a, t_elem *last_b);
 
-//	specific functions
+/*
+**	specific functions
+*/
 t_elem		*load_a(int argc, char **argv);
 void		print_stack(t_elem *root_a, t_elem *root_b, char *ft, t_elem *mark);
 void		ft_free(t_elem *root_a, t_elem *root_b);
@@ -66,6 +68,9 @@ void		cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
 void 		cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
 int			ft_atoi_error(const char *nptr);
 
+/*
+** VISUAL
+*/
 void	print_rb(t_elem *b);
 void	print_rrb(t_elem *b);
 void	print_sa(t_elem *a, t_elem *mark);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_selection.c                              :+:      :+:    :+:   */
+/*   selection_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 10:23:51 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 15:27:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/09 21:17:30 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	ft_call(char *ft, t_elem *root_a, t_elem *root_b, int delay, t_elem 
 	}
 }
 
-static void solve(t_elem *root_a, t_elem *root_b, int delay)
+void solve_list(t_elem *root_a, t_elem *root_b, int delay)
 {
 	int		size;
 	int		index;
@@ -74,7 +74,7 @@ static void solve(t_elem *root_a, t_elem *root_b, int delay)
 	}
 }
 
-int				main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_elem	*root_a;
 	t_elem	*root_b;
@@ -98,7 +98,6 @@ int				main(int argc, char **argv)
 	if (root_a == NULL)
 		write(2, "THERE IS NO LIST NIGGA\n", 24);
 	else
-		solve(root_a, root_b, delay);
+		solve_list(root_a, root_b, delay);
 	ft_free(root_a, root_b);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 23:24:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 12:48:08 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 	}
 }
 
-static int	exec_ft_(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+static int	exec_ft_checker(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (ft_strcmp(ft, "sa") == 0)
 		swap(root_a);
@@ -81,12 +81,9 @@ static int	solve(t_elem *root_a, t_elem *root_b, int delay)
 	line = NULL;
 	while (get_next_line(0, &line, '\n'))
 	{
-		if (exec_ft_(line, root_a, root_b, delay) == -1)
-		{
-			free(line);
-			write(2, "Learn how to type, dumbass.\n", 28);
-			return (0);
-		}
+		write(1, line, 6);
+		if (exec_ft_checker(line, root_a, root_b, delay) == -1)
+			exit_free("Learn how to type, dumbass.\n", 1, line);
 		free(line);
 	}
 	return (1);

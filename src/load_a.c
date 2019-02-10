@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/09 00:49:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/09 20:23:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ t_elem			*load_a(int argc, char **argv)
 	if (!(root_a->next = new(ft_atoi(argv[i]), root_a, root_a, 0)))
 		return (NULL);
 	root_a->previous = root_a->next;
-	printf("okay");
 	get_all(argc, argv, root_a, visu);
 	if (argc == 2)
 		free(argv);
