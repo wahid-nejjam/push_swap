@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 11:56:07 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:08:02 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_elem
 */
 void		solve_list(t_elem *root_a, t_elem *root_b, int delay);
 void		small_sort(t_elem *root_a, t_elem *root_b, int delay);
+void		medium_sort(t_elem *root_a, t_elem *root_b, int delay);
 /*
 **	operations
 */

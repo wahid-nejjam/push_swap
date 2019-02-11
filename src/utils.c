@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:43:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 16:09:53 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:17:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ t_elem	*ft_get_max(t_elem *root)
 }
 
 int		heap_size(t_elem *root)
-{	
-	int	 i;
+{
+	int	i;
 
 	i = 0;
 	while (!root->next->root)

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 18:30:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 23:16:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:19:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_elem	*get_at_index(t_elem *root, int index)
 	t_elem *tmp;
 
 	tmp = root->next;
-	while(index-- && root != root->next && !tmp->next->root)
+	while (index-- && root != root->next && !tmp->next->root)
 	{
 		tmp = tmp->next;
 	}
@@ -36,9 +36,9 @@ int		get_median(t_elem *root)
 	return (median);
 }
 
-int		not_sort(t_elem	*root)
+int		not_sort(t_elem *root)
 {
-	int 	ret;
+	int		ret;
 	t_elem	*tmp;
 
 	ret = 0;
@@ -51,7 +51,7 @@ int		not_sort(t_elem	*root)
 	return (ret);
 }
 
-void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+void	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
 	while (ft_get_max(root_a)->nb >= mid_value && root_a->next != root_a)
 	{
@@ -62,7 +62,7 @@ void 	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 	}
 }
 
-void 	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
+void	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
 	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
 	{

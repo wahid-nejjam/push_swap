@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 12:31:13 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 16:50:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-long				get_next_line(int fd, char **line, int c);
+size_t				get_next_line(int fd, char **line, int c);
 void				exit_free(char *msg, int format, ...);
 void				exit_(char *msg);
 void				print_char_str(char c, size_t nb);

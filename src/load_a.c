@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/09 20:23:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:32:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static int		check(t_elem *root_a)
 	int		k;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	if (!(all = malloc(sizeof (int) * (heap_size(root_a) + 1))))
+	if (!(all = malloc(sizeof(int) * (heap_size(root_a) + 1))))
 		exit_(NULL);
 	root_a = root_a->next;
 	while (!root_a->root)
@@ -30,19 +28,16 @@ static int		check(t_elem *root_a)
 		all[i++] = root_a->nb;
 		root_a = root_a->next;
 	}
-	while (j < i)
+	j = -1;
+	while (++j < i)
 	{
-		k = 0;
-		while (k < i)
-		{
+		k = -1;
+		while (++k < i)
 			if (all[k] == all[j] && k != j)
 			{
 				free(all);
 				return (0);
 			}
-			k++;
-		}
-		j++;
 	}
 	free(all);
 	return (1);
@@ -53,14 +48,16 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 	size_t	i;
 	t_elem	*tmp;
 
-	i = (argc == 3 && visu) ? 1 : 0;
+	i = (argc == 2 || (argc == 3 && visu)) ? -1 : 0;
 	tmp = root_a;
-	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL : ++i < (size_t)argc)
+	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL :
+			++i < (size_t)argc)
 	{
 		if (argv[i][0] != 'c')
 			if (!(tmp = new(ft_atoi_error(argv[i]), root_a, tmp, 0)))
 				return ;
 		tmp->previous->next = tmp;
+		root_a->previous = tmp;
 	}
 	root_a->previous = tmp;
 }
@@ -71,7 +68,7 @@ t_elem			*load_a(int argc, char **argv)
 	t_elem	*root_a;
 	char	visu;
 
-	visu = ((argc > 2 && argv[argc - 1][0] == 'c')) ? 1 : 0;
+	visu = ((argv[argc - 1][0] == 'c')) ? 1 : 0;
 	i = (argc == 2 || (argc == 3 && visu)) ? 0 : 1;
 	if (argv[1][0] == '\0')
 		return (NULL);
@@ -79,11 +76,8 @@ t_elem			*load_a(int argc, char **argv)
 		return (NULL);
 	if (argc == 2 || (visu && argc == 3))
 		argv = ft_strsplit(argv[1], ' ');
-	if (!(root_a = new(0, NULL, NULL, 1)))
-		return (NULL);
-	if (!(root_a->next = new(ft_atoi(argv[i]), root_a, root_a, 0)))
-		return (NULL);
-	root_a->previous = root_a->next;
+	if (!(root_a = new(666, NULL, NULL, 1)))
+		exit_(NULL);
 	get_all(argc, argv, root_a, visu);
 	if (argc == 2)
 		free(argv);

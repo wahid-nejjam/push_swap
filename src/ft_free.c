@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 14:43:53 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/08 23:01:17 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:33:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	free_list(t_elem *root)
 	free(root);
 }
 
-void	ft_free(t_elem *root_a, t_elem *root_b)
+void		ft_free(t_elem *root_a, t_elem *root_b)
 {
 	if (root_a)
 		free_list(root_a);

@@ -6,16 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:47:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 12:30:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 18:45:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-**GETNEXTLINE perso qui renvoie len(line)+1
-**et qui definit la fin de ligne par un caractere choisi
-*/
 
 static char	*ft_strchrend(char *str, char **line, int c)
 {
@@ -25,16 +20,16 @@ static char	*ft_strchrend(char *str, char **line, int c)
 	index = 0;
 	while (str[index] != c && str[index])
 		index++;
-	if (!(end = (char *)malloc(sizeof(char) * index + 1)))
-		return (NULL);
+	if (!(end = malloc(sizeof(char) * (index + 1))))
+		exit_(NULL);
 	index = 0;
-	while (str[index] != c && str[index] != '\0')
+	while (str[index] != c && str[index])
 	{
 		end[index] = str[index];
 		index++;
 	}
 	end[index] = '\0';
-	index = str[index] == c ? index + 1 : index;
+	index = (str[index] == c ? index + 1 : index);
 	*line = end;
 	return (str + index);
 }
@@ -52,13 +47,14 @@ static t_list	*get_right_list(t_list **list, int fd)
 	}
 	if (!(new = ft_lstnew("\0", 0)))
 		return (NULL);
+	((char *)(new->content))[0] = '\0';
 	new->content_size = (size_t)fd;
 	ft_lstadd(list, new);
 	new = *list;
 	return (new);
 }
 
-long	get_next_line(int fd, char **line, int c)
+size_t	get_next_line(int fd, char **line, int c)
 {
 	static t_list	*list;
 	t_list			*list1;
@@ -84,5 +80,5 @@ long	get_next_line(int fd, char **line, int c)
 	if (!(ft_memmove(list1->content, ft_strchrend((char *)
 			list1->content, line, c), ft_strlen(list1->content) + 1)))
 		return (-1);
-	return (ret ? (long)ft_strlen(*line) + 1 : 0);
+	return (ret ? ft_strlen(*line) + 1 : 0);
 }

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 10:47:52 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 12:27:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/10 19:51:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 static void msg_(char *msg)
 {
-	if (msg == NULL)
+	/*if (msg == NULL)
 	{
 			write(2, "Memory allocation error :<\n", 27);
 	}
 	else
 	{
 		write(2, msg, ft_strlen(msg));
-	}
-	write(1, "\7", 1);
+	}*/
+	msg = NULL;
+	write(2, "Error\n", 6);
+	write(2, "\7", 1);
 }
 
 void		exit_free(char *msg, int format, ...)

@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/10 11:55:54 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/10 18:51:05 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADER = include/push_swap.h
 
 SRC_NAME = ft_free.c load_a.c new.c push.c rotate.c swap.c utils.c exec_ft.c\
 print_stack_functions.c print_stack_functions2.c print_stack.c utils_quick.c\
-ft_atoi_error.c small_sort.c
+ft_atoi_error.c small_sort.c medium_sort.c
 SRCDIR = ./src/
 SRC = ${addprefix $(SRCDIR), $(SRC_NAME)}
 

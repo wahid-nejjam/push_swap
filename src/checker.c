@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 12:48:08 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:34:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ static int	solve(t_elem *root_a, t_elem *root_b, int delay)
 	line = NULL;
 	while (get_next_line(0, &line, '\n'))
 	{
-		write(1, line, 6);
 		if (exec_ft_checker(line, root_a, root_b, delay) == -1)
-			exit_free("Learn how to type, dumbass.\n", 1, line);
+			exit_free(NULL, 1, line);
 		free(line);
 	}
 	return (1);
@@ -100,7 +99,7 @@ int			main(int argc, char **argv)
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
 		ft_free(root_a, root_b);
-		exit_("Allocation error :(\n");
+		exit_(NULL);
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;

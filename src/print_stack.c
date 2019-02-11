@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 16:11:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:26:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,26 @@ static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 		else if (ft_strcmp(ft, "sa") == 0)
 			print_sa(a, mark);
 		else if (ft_strcmp(ft, "pa") == 0 && a->next->root)
-			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
-"   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
+			ft_printf(a != mark ?
+	"   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
+	"   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
 		else if (ft_strcmp(ft, "pb") == 0 && a->next->root)
-			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
-"   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
-		else
-			ft_printf(a != mark ? "   |  [\033[31m%d\033[0m]     " :
-"   |  [\033[34m%d\033[0m]     ", a->nb);
+			ft_printf(a != mark ?
+	"   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
+	"   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
 	}
+}
+
+static void		print_footer(struct winsize window, int print_height)
+{
+	print_char_str(' ', (window.ws_col / 2) - 13);
+	write(1, "    \\____/*~*\\____/\n", 19);
+	print_char_str('\n', (window.ws_row - print_height) / 2);
 }
 
 void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 {
-	struct 			winsize	window;
+	struct winsize	window;
 	int				print_height;
 
 	ioctl(0, TIOCGWINSZ, &window);
@@ -83,8 +89,5 @@ void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 		a = (a->root ? a : a->previous);
 		b = (b->root ? b : b->previous);
 	}
-	print_char_str(' ', (window.ws_col / 2) - 13);
-	write(1, "    \\____/*~*\\____/\n", 19);
-	print_char_str('\n', (window.ws_row - print_height) / 2);
-	write(1, ft, 3);
+	print_footer(window, print_height);
 }
