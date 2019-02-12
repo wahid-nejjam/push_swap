@@ -12,7 +12,6 @@ read -p "Size of the array : " SIZE
 MAX=0
 MIN=-1
 TOTAL=0
-mkdir -p result
 I=0
 TOT_KO=0
 ### CALCUL ###
