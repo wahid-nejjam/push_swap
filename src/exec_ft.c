@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 14:13:47 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 15:40:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 06:14:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
-	write(1, ft, ft_strlen(ft));
-	write(1, "\n", 1);
 	if (delay != -1)
 	{
 		print_stack(root_a, root_b, ft, 0);
 		usleep(SEC / delay);
 	}
+	write(1, ft, ft_strlen(ft));
+	write(1, "\n", 1);
 }
 
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay)
