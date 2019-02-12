@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 10:40:39 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:26:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:54:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	check_if_number(const char *nptr)
 {
 	if (*nptr != '-' && !ft_isdigit(*nptr))
 		exit_(NULL);
+	nptr++;
 	while (*nptr)
 	{
 		if (!ft_isdigit(*nptr))
