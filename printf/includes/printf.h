@@ -6,8 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:37:36 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/07 15:38:52 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:44:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PRINTF_H
+# define PRINTF_H
+
 int				ft_printf(const char *str, ...);
+
+#endif

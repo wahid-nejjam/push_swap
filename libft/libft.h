@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 16:50:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:40:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ size_t				get_next_line(int fd, char **line, int c);
 void				exit_free(char *msg, int format, ...);
 void				exit_(char *msg);
 void				print_char_str(char c, size_t nb);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:51:59 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:38:30 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	return ;
 }
 
-static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+static int	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (delay != -1)
 	{
 		print_stack(root_a, root_b, ft, 0);
 		usleep(SEC / delay);
 	}
+	return (1);
 }
 
 static int	exec_ft_checker(char *ft, t_elem *root_a, t_elem *root_b, int delay)
@@ -70,8 +71,7 @@ static int	exec_ft_checker(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 		double_r_rotate(root_a, root_b);
 	else
 		return (-1);
-	print(ft, root_a, root_b, delay);
-	return (1);
+	return (print(ft, root_a, root_b, delay));
 }
 
 static int	solve(t_elem *root_a, t_elem *root_b, int delay)

@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:47:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/10 18:45:55 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:45:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strchrend(char *str, char **line, int c)
+static char		*ft_strchrend(char *str, char **line, int c)
 {
 	char			*end;
 	size_t			index;
@@ -54,7 +54,7 @@ static t_list	*get_right_list(t_list **list, int fd)
 	return (new);
 }
 
-size_t	get_next_line(int fd, char **line, int c)
+size_t			get_next_line(int fd, char **line, int c)
 {
 	static t_list	*list;
 	t_list			*list1;

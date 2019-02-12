@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/11 18:03:12 by conoel           ###   ########.fr        #
+#    Updated: 2019/02/12 05:48:04 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LIBFT_NAME = libft.a
 LIBFT_DIR = ./libft/
 LIBFT = ${addprefix $(LIBFT_DIR), $(LIBFT_NAME)}
 
-FLAGS = #-Wall -Werror -Wextra -pedantic -O3
+FLAGS = -Wall -Werror -Wextra -O3
 
 #
 #
@@ -103,6 +103,6 @@ fclean:
 	@make fclean -C libft
 	@echo "\033[31m\033[1m\033[4mCleaning\033[0m\033[31m : Everything\033[0m [$(LIBFT)]";
 	@make fclean -C printf
-	@echo "\033[31m\033[1m\033[4mCleaning\033[0m\033[31m : Everything\033[0m [$(PRINTF)]";
+	@echo "\033[31m\033[1m\033[4mCleaning\033[0m\033[31m : Everything\033[0m [$(FT_PRINTF)]";
 	@rm -rf $(OBJDIR) $(NAME) $(NAME2)
 	@echo "\033[31m\033[1m\033[4mCleaning\033[0m\033[31m : Everything\033[0m [$(NAME)]";
