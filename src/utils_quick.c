@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 18:30:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:19:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 05:28:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_elem	*get_at_index(t_elem *root, int index)
 	return (tmp);
 }
 
-int		get_median(t_elem *root)
+int		get_pourcentage(t_elem *root, float pourcent)
 {
 	int		median;
 	int		min;
@@ -32,7 +32,7 @@ int		get_median(t_elem *root)
 
 	min = ft_get_min(root)->nb;
 	max = ft_get_max(root)->nb;
-	median = ((max - min) / 2) + min;
+	median = ((max - min) * pourcent) + min;
 	return (median);
 }
 
@@ -64,9 +64,9 @@ void	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 
 void	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 {
-	while (ft_get_max(root_b)->nb >= mid_value && root_b->next != root_b)
+	while (ft_get_min(root_b)->nb <= mid_value && root_b->next != root_b)
 	{
-		if (root_b->previous->nb >= mid_value)
+		if (root_b->previous->nb <= mid_value)
 			exec_ft("pb", root_a, root_b, delay);
 		else
 			exec_ft("rb", root_a, root_b, delay);

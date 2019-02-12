@@ -6,11 +6,27 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:32:22 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:58:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+static int		allocate_heap(t_elem *root_a, int **all)
+{
+	int		i;
+
+	i = 0;
+	if (!(*all = malloc(sizeof(int) * (heap_size(root_a) + 1))))
+		exit_(NULL);
+	root_a = root_a->next;
+	while (!root_a->root)
+	{
+		(*all)[i++] = root_a->nb;
+		root_a = root_a->next;
+	}
+	return (i);
+}
 
 static int		check(t_elem *root_a)
 {
@@ -19,15 +35,7 @@ static int		check(t_elem *root_a)
 	int		j;
 	int		k;
 
-	i = 0;
-	if (!(all = malloc(sizeof(int) * (heap_size(root_a) + 1))))
-		exit_(NULL);
-	root_a = root_a->next;
-	while (!root_a->root)
-	{
-		all[i++] = root_a->nb;
-		root_a = root_a->next;
-	}
+	i = allocate_heap(root_a, &all);
 	j = -1;
 	while (++j < i)
 	{

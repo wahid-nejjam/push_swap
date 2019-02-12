@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:08:02 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 23:11:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			ft_get_index(t_elem *elem);
 void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay);
 t_elem		*get_at_index(t_elem *root, int index);
 int			heap_size(t_elem *root);
-int			get_median(t_elem *root);
+int			get_pourcentage(t_elem *root, float pourcent);
 int			not_sort(t_elem	*root);
 void		cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
 void 		cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay);

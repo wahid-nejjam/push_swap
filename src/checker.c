@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:34:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:51:59 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	}
 	if (root_b->previous != root_b || root_b->next != root_b)
 	{
-		write(1, "KO (B not emptied)\n", 19);
+		write(1, "KO\n", 3);
 		return ;
 	}
 	write(1, "OK\n", 3);
@@ -95,7 +95,7 @@ int			main(int argc, char **argv)
 	int		delay;
 
 	if (!(root_a = load_a(argc, argv)))
-		exit_("THERE IS NO LIST NIGGA\n");
+		exit_(NULL);
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
 		ft_free(root_a, root_b);

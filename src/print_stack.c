@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:26:24 by conoel           ###   ########.fr       */
+/*   Updated: 2019/02/12 00:08:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			print_stack(t_elem *a, t_elem *b, char *ft, t_elem *mark)
 	b = b->previous;
 	a = a->previous;
 	print_height = get_print_height(a, b);
-	if (window.ws_row < heap_size(a))
+	if (window.ws_row <= heap_size(a) + 2)
 	{
 		write(2, "Way too big !\n", 13);
 		return ;
