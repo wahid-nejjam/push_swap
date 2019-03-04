@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 10:47:52 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 05:45:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/04 12:10:32 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 static void	msg_(char *msg)
 {
 	msg = NULL;
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	write(2, "\7", 1);
 }
 

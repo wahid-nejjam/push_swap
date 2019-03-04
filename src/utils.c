@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:43:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:17:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/04 14:17:00 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		issort(t_elem *root)
 	tmp = root->next;
 	while (!tmp->next->root)
 	{
-		if (tmp->nb > tmp->next->nb)
+		if (tmp->nb < tmp->next->nb)
 			return (0);
 		tmp = tmp->next;
 	}

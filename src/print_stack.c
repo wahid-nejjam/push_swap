@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 06:09:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/04 14:49:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		print_b(t_elem *b, char *ft)
 {
 	if (b->root)
-		ft_printf("     |\n");
+		ft_printf("     | \n");
 	else
 	{
 		if (ft_strcmp(ft, "rb") == 0)
@@ -45,16 +45,16 @@ static void		print_a(int col, t_elem *a, t_elem *mark, char *ft)
 			print_rra(a, mark);
 		else if (ft_strcmp(ft, "sa") == 0)
 			print_sa(a, mark);
-		else if (ft_strcmp(ft, "pa") == 0 && a->next->root)
+		else if (ft_strcmp(ft, "pb") == 0 && a->next->root)
 			ft_printf(a != mark ?
 	"   |  [\033[31m%d\033[0m]\033[32m---->\033[0m" :
 	"   |  [\033[34m%d\033[0m]\033[32m---->\033[0m", a->nb);
-		else if (ft_strcmp(ft, "pb") == 0 && a->next->root)
+		else if (ft_strcmp(ft, "pa") == 0 && a->next->root)
 			ft_printf(a != mark ?
 	"   |  [\033[31m%d\033[0m]\033[32m<----\033[0m" :
 	"   |  [\033[34m%d\033[0m]\033[32m<----\033[0m", a->nb);
 		else
-			ft_printf("   |  [\033[31m%d\033[0m]\033[32m    \033[0m", a->nb);
+			ft_printf("   |  [\033[31m%d\033[0m]\033[32m    \033[0m ", a->nb);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/11 17:58:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/04 16:03:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,20 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 	size_t	i;
 	t_elem	*tmp;
 
+	if (argc == 2 && visu)
+		exit_(NULL);
 	i = (argc == 2 || (argc == 3 && visu)) ? -1 : 0;
 	tmp = root_a;
 	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL :
 			++i < (size_t)argc)
 	{
 		if (argv[i][0] != 'c')
-			if (!(tmp = new(ft_atoi_error(argv[i]), root_a, tmp, 0)))
+			if (!(tmp = new(ft_atoi_error(argv[i]), tmp, root_a, 0)))
 				return ;
-		tmp->previous->next = tmp;
-		root_a->previous = tmp;
+		tmp->next->previous = tmp;
+		root_a->next = tmp;
 	}
-	root_a->previous = tmp;
+	root_a->next = tmp;
 }
 
 t_elem			*load_a(int argc, char **argv)
@@ -92,7 +94,7 @@ t_elem			*load_a(int argc, char **argv)
 	if (check(root_a) == 0)
 	{
 		ft_free(root_a, NULL);
-		exit_("Two identical numbers !\n");
+		exit_(NULL);
 	}
 	return (root_a);
 }

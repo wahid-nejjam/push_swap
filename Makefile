@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/02/12 05:48:04 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/04 14:14:33 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 #
 
 NAME = push_swap
-FILE_NAME = quick_sort
+FILE_NAME = push_swap
 NAME2 = checker
 
 HEADER = include/push_swap.h

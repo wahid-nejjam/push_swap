@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 05:38:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/04 14:15:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	tmp = root_a->next;
 	while (!tmp->next->root)
 	{
-		if (tmp->nb > tmp->next->nb)
+		if (tmp->nb < tmp->next->nb)
 		{
 			write(1, "KO\n", 3);
 			return ;
@@ -38,10 +38,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 static int	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (delay != -1)
-	{
 		print_stack(root_a, root_b, ft, 0);
-		usleep(SEC / delay);
-	}
 	return (1);
 }
 
