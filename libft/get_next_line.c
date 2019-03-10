@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:47:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 05:45:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/10 16:57:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char		*ft_strchrend(char *str, char **line, int c)
 	index = 0;
 	while (str[index] != c && str[index])
 		index++;
-	if (!(end = malloc(sizeof(char) * (index + 1))))
+	if (!(end = malloc(sizeof(char) * ((index) + 1))))
 		exit_(NULL);
 	index = 0;
 	while (str[index] != c && str[index])
@@ -29,7 +29,6 @@ static char		*ft_strchrend(char *str, char **line, int c)
 		index++;
 	}
 	end[index] = '\0';
-	index = (str[index] == c ? index + 1 : index);
 	*line = end;
 	return (str + index);
 }
@@ -78,7 +77,12 @@ size_t			get_next_line(int fd, char **line, int c)
 	}
 	ret = (ssize_t)ft_strlen(list1->content) ? 1 : 0;
 	if (!(ft_memmove(list1->content, ft_strchrend((char *)
-			list1->content, line, c), ft_strlen(list1->content) + 1)))
+			list1->content, line, c) + 1, ft_strlen(list1->content))))
 		return (-1);
+	if (!ret)
+	{
+		free(list1->content);
+		free(list1);
+	}
 	return (ret ? ft_strlen(*line) + 1 : 0);
 }

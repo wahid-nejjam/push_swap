@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 14:15:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/10 17:47:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static int	solve(t_elem *root_a, t_elem *root_b, int delay)
 			exit_free(NULL, 1, line);
 		free(line);
 	}
+	free(line);
 	return (1);
 }
 
