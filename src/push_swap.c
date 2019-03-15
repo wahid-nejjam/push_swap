@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 15:58:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/10 19:52:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int			main(int argc, char **argv)
 	t_elem	*root_b;
 	int		delay;
 
-	argc == 1 ? exit_(NULL) : 0;
-	root_a = load_a(argc, argv);
+	if (!(root_a = load_a(argc, argv)))
+		exit_(NULL);
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
 		ft_free(root_a, root_b);

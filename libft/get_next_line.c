@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:47:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/10 16:57:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/10 19:33:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ size_t			get_next_line(int fd, char **line, int c)
 	char			*tmp;
 	ssize_t			ret;
 
-	if ((fd < 0 || read(fd, buffer, 0) < 0) || !(list1 =
-			get_right_list(&list, fd)))
-		return (-1);
+	list1 = get_right_list(&list, fd);
 	while ((ret = read(fd, buffer, BUFF_SIZE)))
 	{
 		buffer[ret] = '\0';
@@ -79,10 +77,7 @@ size_t			get_next_line(int fd, char **line, int c)
 	if (!(ft_memmove(list1->content, ft_strchrend((char *)
 			list1->content, line, c) + 1, ft_strlen(list1->content))))
 		return (-1);
-	if (!ret)
-	{
-		free(list1->content);
-		free(list1);
-	}
+	!ret ? free(list1->content) : 0;
+	!ret ? free(list1) : 0;
 	return (ret ? ft_strlen(*line) + 1 : 0);
 }
