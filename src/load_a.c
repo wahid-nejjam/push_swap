@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/16 13:59:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/16 18:35:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,12 @@ t_elem			*load_a(int argc, char **argv)
 		return (NULL);
 	get_all(argc, argv, root_a, visu);
 	if (argc == 2)
+	{
+		i = 0;
+		while (argv[i] != 0)
+			free(argv[i++]);
 		free(argv);
+	}
 	if (check(root_a) == 0)
 	{
 		ft_free(root_a, NULL);
