@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/11 13:17:10 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/16 13:59:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 			++i < (size_t)argc)
 	{
 		if (argv[i][0] != 'c')
-			if (!(tmp = new(ft_atoi_error(argv[i]), tmp, root_a, 0)))
+			if (!(tmp = new(ft_atoi_error(argv[i], root_a), tmp, root_a, 0)))
 				return ;
 		tmp->next->previous = tmp;
 		root_a->next = tmp;

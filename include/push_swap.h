@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:54:56 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 05:32:59 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/16 13:59:57 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				get_pourcentage(t_elem *root, float pourcent);
 int				not_sort(t_elem	*root);
 void			cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
 void			cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay);
-int				ft_atoi_error(const char *nptr);
+int				ft_atoi_error(const char *nptr, t_elem *root_a);
 
 /*
 ** VISUAL
