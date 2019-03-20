@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/10 19:52:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 14:44:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		long_sort(t_elem *root_a, t_elem *root_b, int delay)
 {
 	while (root_a->next != root_a && !issort(root_a))
 	{
-		cut_a(root_a, root_b, get_pourcentage(root_a, 0.5), delay);
+		cut_a(root_a, root_b, get_pourcentage(root_a, 0.28), delay);
 		if (heap_size(root_a) <= 13)
 			solve_a(root_a, root_b, heap_size(root_a), delay);
 	}
