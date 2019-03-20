@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/16 18:40:07 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 15:22:19 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_elem			*load_a(int argc, char **argv)
 	visu = ((argv[argc - 1][0] == 'c')) ? 1 : 0;
 	i = (argc == 2 || (argc == 3 && visu)) ? 0 : 1;
 	argc < 2 ? exit(-1) : 0;
-	if (argv[1][0] == '\0')
-		return (NULL);
+	//if (argv[1][0] == '\0')
+	//	return (NULL);
 	argc == 2 || (visu && argc == 3) ? argv = ft_strsplit(argv[1], ' ') : 0;
 	if (!(root_a = new(666, NULL, NULL, 1)))
 		return (NULL);
