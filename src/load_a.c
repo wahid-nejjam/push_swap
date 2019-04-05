@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/23 15:59:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/24 15:58:10 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 
 	if (argc == 2 && visu)
 		exit_(NULL);
-	i = (argc == 2 || (argc == 3 && visu)) ? -1 : 0;
+	i = (argc == 2 || (argc == 3 && visu)) && ft_strchr(argv[1], ' ') ? -1 : 0;
 	tmp = root_a;
 	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL :
 			++i < (size_t)argc)
@@ -86,7 +86,7 @@ t_elem			*load_a(int argc, char **argv)
 	if (!(root_a = new(666, NULL, NULL, 1)))
 		return (NULL);
 	get_all(argc, argv, root_a, visu);
-	if (argc == 2)
+	if (argc == 2 && argv[2] != NULL)
 	{
 		i = 0;
 		while (argv[i] != 0)

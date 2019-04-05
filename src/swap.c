@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:57:02 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/03 21:16:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/03 18:17:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		swap(t_elem *root)
 {
 	int			tmp;
 
-	if (root->next == root)
+	if (root->next == root || root->next->next == root)
 		return ;
 	tmp = root->previous->nb;
 	root->previous->nb = root->previous->previous->nb;

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:42:31 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 12:07:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/03 18:24:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		rotate(t_elem *root)
 	t_elem	*bottom;
 	t_elem	*tmp;
 
-	if (root->next == root)
+	if (!root || root->next == root || root->next->next == root)
 		return ;
 	tmp = root->previous;
 	top = root->next;
@@ -49,7 +49,7 @@ void		r_rotate(t_elem *root)
 	t_elem	*bottom;
 	t_elem	*tmp;
 
-	if (root->next == root)
+	if (!root || root->next == root || root->next->next == root)
 		return ;
 	tmp = root->next;
 	bottom = root->previous;
