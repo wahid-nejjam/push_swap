@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 17:58:23 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 14:44:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/07 17:10:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,12 @@ static void	solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
 
 void		long_sort(t_elem *root_a, t_elem *root_b, int delay)
 {
+	float a;
+
+	a = 0.28;
 	while (root_a->next != root_a && !issort(root_a))
 	{
-		cut_a(root_a, root_b, get_pourcentage(root_a, 0.28), delay);
+		cut_a(root_a, root_b, get_pourcentage(root_a, a), delay);
 		if (heap_size(root_a) <= 13)
 			solve_a(root_a, root_b, heap_size(root_a), delay);
 	}
@@ -105,12 +108,12 @@ int			main(int argc, char **argv)
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
-	delay = (argc > 2 && argv[argc - 1][0] == 'c') ?
+	delay = (argv[argc - 1][0] == 'c') ?
 		ft_atoi(&(argv[argc - 1][1])) : -1;
 	root_a == NULL ? exit_(NULL) : 0;
 	if (heap_size(root_a) <= 3)
 		small_sort(root_a, root_b, delay);
-	else if (heap_size(root_a) <= 20)
+	else if (heap_size(root_a) <= 25)
 		medium_sort(root_a, root_b, delay);
 	else if (heap_size(root_a) <= 200)
 		long_sort(root_a, root_b, delay);

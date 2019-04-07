@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/24 15:58:10 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/07 16:35:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,16 @@ static int		check(t_elem *root_a)
 	return (1);
 }
 
-static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
+static void		get_all(int argc, char **argv, t_elem *root_a)
 {
 	size_t	i;
 	t_elem	*tmp;
 
-	if (argc == 2 && visu)
-		exit_(NULL);
-	i = (argc == 2 || (argc == 3 && visu)) && ft_strchr(argv[1], ' ') ? -1 : 0;
+	i = 0;
 	tmp = root_a;
-	while (((argc == 3 && visu) || argc == 2) ? argv[++i] != NULL :
-			++i < (size_t)argc)
+	while (++i < (size_t)argc)
 	{
-		if (argv[i][0] != 'c')
+		if (argv[i][0] != 'c' || argc - 1 != i)
 			if (!(tmp = new(ft_atoi_error(argv[i], root_a), tmp, root_a, 0)))
 				return ;
 		tmp->next->previous = tmp;
@@ -74,25 +71,17 @@ static void		get_all(int argc, char **argv, t_elem *root_a, int visu)
 
 t_elem			*load_a(int argc, char **argv)
 {
-	size_t	i;
 	t_elem	*root_a;
 	char	visu;
 
-	visu = ((argv[argc - 1][0] == 'c')) ? 1 : 0;
-	i = (argc == 2 || (argc == 3 && visu)) ? 0 : 1;
-	argc < 2 ? exit(-1) : 0;
-	(argc == 2 || (visu && argc == 3)) && ft_strchr(argv[1], ' ') ? argv =
-		ft_strsplit(argv[1], ' ') : 0;
+	if (argc < 2)
+		return (0);
+	visu = (argv[argc - 1][0] == 'c') ? 1 : 0;
+	if (argc == 2 && visu)
+		return (0);
 	if (!(root_a = new(666, NULL, NULL, 1)))
 		return (NULL);
-	get_all(argc, argv, root_a, visu);
-	if (argc == 2 && argv[2] != NULL)
-	{
-		i = 0;
-		while (argv[i] != 0)
-			free(argv[i++]);
-		free(argv);
-	}
+	get_all(argc, argv, root_a);
 	if (check(root_a) == 0)
 	{
 		ft_free(root_a, NULL);

@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/03 18:25:39 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/07 16:29:03 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LIBFT_NAME = libft.a
 LIBFT_DIR = ./libft/
 LIBFT = ${addprefix $(LIBFT_DIR), $(LIBFT_NAME)}
 
-FLAGS = -Wall -Werror -Wextra -Ofast
+FLAGS = #-Wall -Werror -Wextra -Ofast
 
 #
 #
