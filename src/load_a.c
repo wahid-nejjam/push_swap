@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/12 16:36:47 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:51:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ static int		check(t_elem *root_a)
 
 static void		get_all(int argc, char **argv, t_elem *root_a)
 {
-	size_t	i;
+	int		i;
 	t_elem	*tmp;
 
 	i = 0;
 	tmp = root_a;
-	while (++i < (size_t)argc)
+	while (++i < argc)
 	{
 		if (argv[i][0] != 'c' || argc - 1 != i)
 			if (!(tmp = new(ft_atoi_error(argv[i]), tmp, root_a, 0)))

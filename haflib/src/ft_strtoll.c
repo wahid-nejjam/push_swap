@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:00:20 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/12 16:51:36 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:34:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long long	ft_strtoll(char *ptr, size_t *index)
 		i++;
 	sign = (ptr[i] == '-') ? -1 : 1;
 	ptr[i] == '-' || ptr[i] == '+' ? i++ : 0;
-	while (ft_isalphanum_base(ptr[i], base, maj))
+	while (ft_isalphanum_base(ptr[i], 10, maj))
 	{
 		ret *= 10;
 		ret += ft_get_char(ptr[i++], maj);

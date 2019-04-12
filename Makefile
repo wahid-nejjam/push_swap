@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/12 16:36:43 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/12 17:50:15 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LIB_NAME = haflib.a
 LIB_DIR = ./haflib/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = #-Wall -Werror -Wextra -Ofast
+FLAGS = -Wall -Werror -Wextra -Ofast
 
 #
 #

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/12 16:53:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:49:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 # define BUFF_SIZE 16
 # define ITER_MAX (INT_MAX / BUFF_SIZE)
-
 
 void				free_tab(char **tab);
 
@@ -51,14 +50,12 @@ void				*ft_memchr(const void *s, int c, size_t n);
 char				*ft_strchr(const char *s, int c);
 char				*ft_itoa(int n);
 
-
 typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
 
 size_t				get_next_line(int fd, char **line, int c);
 

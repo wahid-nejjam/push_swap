@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:47:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/12 16:41:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:48:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*ft_strchrend(char *str, char **line, int c)
 	while (str[index] != c && str[index])
 		index++;
 	if (!(end = malloc_garbage(sizeof(char) * ((index) + 1))))
-		return(NULL);
+		return (NULL);
 	index = 0;
 	while (str[index] != c && str[index])
 	{
