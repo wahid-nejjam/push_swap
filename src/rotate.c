@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:42:31 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/03 18:24:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:25:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 void		double_rotate(t_elem *root_a, t_elem *root_b)
 {

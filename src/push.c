@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:57:07 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/14 18:14:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:25:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 void	push(t_elem *root2, t_elem *root1)
 {

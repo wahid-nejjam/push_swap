@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:56:58 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/03 18:27:02 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:44:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 static void	is_sort(t_elem *root_a, t_elem *root_b)
 {
@@ -35,7 +35,7 @@ static void	is_sort(t_elem *root_a, t_elem *root_b)
 	return ;
 }
 
-static int	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+static int	print_all(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (delay != -1)
 		print_stack(root_a, root_b, ft, 0);
@@ -68,7 +68,7 @@ static int	exec_ft_checker(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 		double_r_rotate(root_a, root_b);
 	else
 		return (-1);
-	return (print(ft, root_a, root_b, delay));
+	return (print_all(ft, root_a, root_b, delay));
 }
 
 static int	solve(t_elem *root_a, t_elem *root_b, int delay)
@@ -77,12 +77,8 @@ static int	solve(t_elem *root_a, t_elem *root_b, int delay)
 
 	line = NULL;
 	while (get_next_line(0, &line, '\n'))
-	{
 		if (exec_ft_checker(line, root_a, root_b, delay) == -1)
-			exit_free(NULL, 1, line);
-		free(line);
-	}
-	free(line);
+			return (return_(NULL));
 	return (1);
 }
 
@@ -93,22 +89,23 @@ int			main(int argc, char **argv)
 	int		delay;
 
 	if (!(root_a = load_a(argc, argv)))
-		exit_(NULL);
+	{
+		malloc_garbage(0);
+		return (return_(NULL));
+	}
 	if (!(root_b = new(0, NULL, NULL, 1)))
 	{
-		ft_free(root_a, root_b);
-		exit_(NULL);
+		malloc_garbage(0);
+		return (return_(NULL));
 	}
 	root_b->next = root_b;
 	root_b->previous = root_b;
 	if (argc > 2 && argv[argc - 1][0] == 'c')
-	{
 		delay = ft_atoi(&(argv[argc - 1][1]));
-	}
 	else
 		delay = -1;
 	if (solve(root_a, root_b, delay))
 		is_sort(root_a, root_b);
-	ft_free(root_a, root_b);
+	malloc_garbage(0);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:48:44 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 14:21:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:26:04 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 void	medium_sort(t_elem *root_a, t_elem *root_b, int delay)
 {

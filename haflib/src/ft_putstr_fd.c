@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/09 14:43:53 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/05 17:17:55 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/09 17:42:21 by conoel            #+#    #+#             */
+/*   Updated: 2019/02/13 10:59:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-static void	free_list(t_elem *root)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	t_elem	*tmp1;
-	t_elem	*tmp;
-
-	if (!root)
+	if (!s)
 		return ;
-	tmp = root->next;
-	while (tmp != NULL && tmp != root)
-	{
-		tmp1 = tmp;
-		tmp = tmp->next;
-		free(tmp1);
-	}
-	free(root);
-}
-
-void		ft_free(t_elem *root_a, t_elem *root_b)
-{
-	free_list(root_a);
-	free_list(root_b);
+	write(fd, s, ft_strlen(s));
 }

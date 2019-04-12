@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 11:43:24 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 14:17:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 int		issort(t_elem *root)
 {

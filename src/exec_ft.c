@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 14:13:47 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/12 06:14:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
-static void	print(char *ft, t_elem *root_a, t_elem *root_b, int delay)
+static void	print_all(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 {
 	if (delay != -1)
 	{
@@ -47,5 +47,5 @@ void		exec_ft(char *ft, t_elem *root_a, t_elem *root_b, int delay)
 		r_rotate(root_b);
 	else if (ft_strcmp(ft, "rrr") == 0)
 		double_r_rotate(root_a, root_b);
-	print(ft, root_a, root_b, delay);
+	print_all(ft, root_a, root_b, delay);
 }

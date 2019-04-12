@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:59:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 14:49:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 static void		print_b(t_elem *b, char *ft)
 {

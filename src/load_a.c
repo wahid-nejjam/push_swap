@@ -6,18 +6,18 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:12:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/07 16:35:38 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 static int		allocate_heap(t_elem *root_a, int **all)
 {
 	int		i;
 
 	i = 0;
-	if (!(*all = malloc(sizeof(int) * (heap_size(root_a) + 1))))
+	if (!(*all = malloc_garbage(sizeof(int) * (heap_size(root_a) + 1))))
 		exit_(NULL);
 	root_a = root_a->next;
 	while (!root_a->root)
@@ -42,12 +42,8 @@ static int		check(t_elem *root_a)
 		k = -1;
 		while (++k < i)
 			if (all[k] == all[j] && k != j)
-			{
-				free(all);
 				return (0);
-			}
 	}
-	free(all);
 	return (1);
 }
 
@@ -61,7 +57,7 @@ static void		get_all(int argc, char **argv, t_elem *root_a)
 	while (++i < (size_t)argc)
 	{
 		if (argv[i][0] != 'c' || argc - 1 != i)
-			if (!(tmp = new(ft_atoi_error(argv[i], root_a), tmp, root_a, 0)))
+			if (!(tmp = new(ft_atoi_error(argv[i]), tmp, root_a, 0)))
 				return ;
 		tmp->next->previous = tmp;
 		root_a->next = tmp;
@@ -83,9 +79,6 @@ t_elem			*load_a(int argc, char **argv)
 		return (NULL);
 	get_all(argc, argv, root_a);
 	if (check(root_a) == 0)
-	{
-		ft_free(root_a, NULL);
 		return (NULL);
-	}
 	return (root_a);
 }

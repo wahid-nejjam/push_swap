@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 17:49:55 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/09 20:22:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:26:04 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
 #include <time.h>
 

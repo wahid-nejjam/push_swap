@@ -6,8 +6,8 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 14:26:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/06 01:51:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"

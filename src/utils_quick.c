@@ -6,23 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 18:30:29 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/04 15:06:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/12 16:36:47 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-
-t_elem	*get_at_index(t_elem *root, int index)
-{
-	t_elem *tmp;
-
-	tmp = root->next;
-	while (index-- && root != root->next && !tmp->next->root)
-	{
-		tmp = tmp->next;
-	}
-	return (tmp);
-}
+#include "push_swap.h"
 
 int		get_pourcentage(t_elem *root, float pourcent)
 {
@@ -34,21 +22,6 @@ int		get_pourcentage(t_elem *root, float pourcent)
 	max = ft_get_max(root)->nb;
 	median = ((max - min) * pourcent) + min;
 	return (median);
-}
-
-int		not_sort(t_elem *root)
-{
-	int		ret;
-	t_elem	*tmp;
-
-	ret = 0;
-	tmp = root->next;
-	while (!issort(tmp) && tmp->next != root)
-	{
-		tmp = tmp->next;
-		ret++;
-	}
-	return (ret);
 }
 
 void	cut_a(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
@@ -70,5 +43,49 @@ void	cut_b(t_elem *root_a, t_elem *root_b, int mid_value, int delay)
 			exec_ft("pa", root_a, root_b, delay);
 		else
 			exec_ft("rb", root_a, root_b, delay);
+	}
+}
+
+void	solve_a(t_elem *root_a, t_elem *root_b, int max, int delay)
+{
+	int		size;
+	int		index;
+	t_elem	*tmp;
+
+	size = ft_get_index((root_a)->next);
+	while (root_a->next != root_a && max--)
+	{
+		tmp = ft_get_min(root_a);
+		index = ft_get_index(tmp);
+		if (index > size / 2)
+			while ((root_a)->previous != tmp)
+				exec_ft("rra", root_a, root_b, delay);
+		else
+			while ((root_a)->previous != tmp)
+				exec_ft("ra", root_a, root_b, delay);
+		exec_ft("pb", root_a, root_b, delay);
+		size--;
+	}
+}
+
+void	solve_b(t_elem *root_a, t_elem *root_b, int max, int delay)
+{
+	int		size;
+	int		index;
+	t_elem	*tmp;
+
+	size = ft_get_index((root_b)->next);
+	while (root_b->next != root_b && max--)
+	{
+		tmp = ft_get_max(root_b);
+		index = ft_get_index(tmp);
+		if (index > size / 2)
+			while ((root_b)->previous != tmp)
+				exec_ft("rrb", root_a, root_b, delay);
+		else
+			while ((root_b)->previous != tmp)
+				exec_ft("rb", root_a, root_b, delay);
+		exec_ft("pa", root_a, root_b, delay);
+		size--;
 	}
 }
